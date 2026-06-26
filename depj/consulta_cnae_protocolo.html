@@ -20,7 +20,7 @@
             }
             .principal { flex: 1 0 auto; }
             footer { flex-shrink: 0; }
-            .siccau-color { background-color: #14385d !important; }
+            .siccau-color { background-color: #006f78 !important; }
             
             /* Visual dos Cards Limpos (Lista) */
             .cnae-card {
@@ -68,6 +68,9 @@
             #inputCnpj::placeholder {
                 font-size: 0.9rem;
             }
+            html, body { height: 100%; }
+            body { display: flex; flex-direction: column; min-height: 100vh; }
+            main { flex: 1; }
         </style>
     </head>
     
@@ -105,6 +108,8 @@
                 </ul> -->
             </div>
         </nav>
+
+        <main>
             
         <div class="container principal mt-4">
             <h2 class="text-center mb-4" style="color: #44546a;">Conciliação de CNAEs por CNPJ</h2>
@@ -171,6 +176,7 @@
             </div> 
         </div> 
         
+        </main>
         <footer class="siccau-color text-light d-flex align-items-center justify-content-center py-2 mt-3">
             <p class="m-1">Coordenação Técnica do Exercício Profissional - CAU/RJ</p>
         </footer>

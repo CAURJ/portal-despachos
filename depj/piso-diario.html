@@ -13,6 +13,9 @@
     <title>Salário Mínimo Profissional</title>
 
     <style>
+      .siccau-color { background-color: #006f78; }
+      .nav-link { color: rgba(255,255,255,0.9) !important; }
+
       .bd-callout {
         padding: 1.25rem;
         margin-top: 1.25rem;
@@ -34,6 +37,9 @@
       /* input[type="time"]::-webkit-calendar-picker-indicator {
         display: none;
       } */
+            html, body { height: 100%; }
+            body { display: flex; flex-direction: column; min-height: 100vh; }
+            main { flex: 1; }
 
     </style>
 
@@ -140,6 +146,13 @@
 
 
   <body style="min-width: 380px;">
+
+    <nav class="navbar navbar-expand-lg navbar-dark siccau-color">
+      <a href="#" class="mr-3"><img src="cau.png" width="315" height="75" alt="Início" class="img-fluid"></a>
+      <a class="navbar-brand fa-lg pt-3 pb-3" href="">Calculadora de Piso Salarial</a>
+    </nav>
+
+    <main>
 
     <div class="modal fade" id="modalAlertas" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -444,6 +457,12 @@
 
 
 
+
+    </main>
+
+    <footer class="siccau-color text-light d-flex align-items-center justify-content-center py-2 mt-3">
+      <p class="m-1">Conselho de Arquitetura e Urbanismo do Rio de Janeiro - CAU/RJ</p>
+    </footer>
 
     <!-- JavaScript (Opcional) -->
     <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->

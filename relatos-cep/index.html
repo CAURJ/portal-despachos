@@ -46,19 +46,25 @@
             padding-bottom: 4px;
             margin-bottom: 16px;
         }
+            .siccau-color { background-color: #006f78; }
+        body { min-height: 100vh; display: flex; flex-direction: column; }
+        main { flex: 1; }
     </style>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #14385d;">
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #006f78;">
         <div class="container-fluid">
+            <a href="#" class="mr-3"><img src="cau.png" width="315" height="75" alt="Início" class="img-fluid"></a>
             <span class="navbar-brand mb-0">Relatos CEP</span>
             <span class="navbar-text" style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">
                 CAU/RJ — Comissão de Exercício Profissional
             </span>
         </div>
     </nav>
+
+    <main>
 
     <div class="container my-4">
 
@@ -79,8 +85,9 @@
 
     </div>
 
-    <footer class="d-flex align-items-center justify-content-center py-2 mt-auto bg-light">
-        <p class="m-1 small text-muted">Conselho de Arquitetura e Urbanismo do Rio de Janeiro — CAU/RJ</p>
+    </main>
+    <footer class="siccau-color text-light d-flex align-items-center justify-content-center py-2 mt-3">
+        <p class="m-1">Conselho de Arquitetura e Urbanismo do Rio de Janeiro - CAU/RJ</p>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

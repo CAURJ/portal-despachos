@@ -29,7 +29,7 @@
             #atualizarBtn.btn-outline-success:hover { background-color: #28a745; color: white; }
             #deletarBtn.btn-outline-danger { border-color: #dc3545; color: #dc3545; }
             #deletarBtn.btn-outline-danger:hover { background-color: #dc3545; color: white; }
-            .siccau-color { background-color: #14385d !important; }
+            .siccau-color { background-color: #006f78 !important; }
             .cnae-nao-encontrado-local {
                 background-color: #fff3cd; 
                 border: 1px solid #ffeeba;
@@ -74,6 +74,9 @@
             footer {
                 flex-shrink: 0;
             }
+            html, body { height: 100%; }
+            body { display: flex; flex-direction: column; min-height: 100vh; }
+            main { flex: 1; }
         </style>
     </head>
     
@@ -113,6 +116,8 @@
                 </ul> -->
             </div>
         </nav>
+
+        <main>
             
         <div class="container principal">
             <h2 class="text-center mt-4" style="color: #44546a;">Conciliação de CNAEs por CNPJ</h2>
@@ -536,6 +541,7 @@
             </div> 
         </div> 
         
+        </main>
         <footer class="siccau-color text-light d-flex align-items-center justify-content-center py-2 mt-3">
             <p class="m-1">Conselho de Arquitetura e Urbanismo do Rio de Janeiro - CAU/RJ </p>
         </footer>
