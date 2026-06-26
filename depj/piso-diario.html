@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+  <head>
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="icon" href="favicon_calc.ico" type="image/x-icon">
+    <title>Salário Mínimo Profissional</title>
+
+    <style>
+      .bd-callout {
+        padding: 1.25rem;
+        margin-top: 1.25rem;
+        margin-bottom: 1.25rem;
+        border: 1px solid #eee;
+        border-left-width: .25rem;
+        border-radius: .25rem
+      }
+
+      .bd-callout-info {
+        border-left-color: #5bc0de
+      }
+
+      .bd-callout-danger {
+      border-left-color: #c41e2f
+      }
+
+      /* Esconde o ícone de relógio no input de hora (funciona no Chrome, Edge, Safari) */
+      /* input[type="time"]::-webkit-calendar-picker-indicator {
+        display: none;
+      } */
+
+    </style>
+
+
+
+
+    <script>
+      function calcularPiso() {
+        // Função auxiliar para exibir mensagens no modal
+        function mostrarErro(mensagem) {
+          document.getElementById('corpoModalAlerta').innerHTML = mensagem;
+          $('#modalAlertas').modal('show');
+        }
+
+        var valor_digitado = document.getElementById('entrada_salario_minimo').value;
+        var carga_horaria_em_horas = document.getElementById('entrada_carga_horaria').value;
+
+        // 1. Validação: Os dois campos vazios
+        if (valor_digitado === "" && carga_horaria_em_horas === "") {
+          mostrarErro('<p>É necessário preencher o <strong>Salário Mínimo</strong> e a <strong>Carga Horária</strong> para realizar o cálculo.</p>');
+          return;
+        }
+
+        // 2. Validação: Apenas salário vazio
+        if (valor_digitado === "") {
+          mostrarErro('<p>O campo <strong>Salário Mínimo</strong> está vazio.</p><p>Por favor, informe o valor base (Ex: R$ "<strong><i>1.212,00</i></strong>").</p>');
+          return;
+        }
+
+        // 3. Validação: Apenas carga horária vazia
+        if (carga_horaria_em_horas === "") {
+          mostrarErro('<p>O campo <strong>Carga Horária</strong> está vazio.</p><p>Por favor, informe a jornada diária exercida (Ex: "<strong><i>06:00</i></strong>" horas).</p>');
+          return;
+        }
+
+        // 4. Validação: Formato da hora inválido (minutos passando de 59)
+        var regexDuracao = /^\d{1,2}:[0-5][0-9]$/;
+        if (!regexDuracao.test(carga_horaria_em_horas)) {
+          mostrarErro('<p>A carga horária informada é <strong>inválida</strong>.</p><p>O formato correto é HH:MM (horas e minutos); Ex: "<strong><i>06:00</i></strong>" horas.</p>');
+          return;
+        }
+
+        // --- SE PASSOU POR TODAS AS VALIDAÇÕES, FAZ A CONTA --- //
+
+        var salario_minimo = parseFloat(valor_digitado.replace(/\./g, '').replace(',', '.'));
+
+        var partes_carga_horaria = carga_horaria_em_horas.split(':');
+        var horas = parseInt(partes_carga_horaria[0]);
+        var minutos = parseInt(partes_carga_horaria[1]);
+        var carga_horaria = horas + minutos / 60;
+
+        if (carga_horaria > 6) {
+          var qtd_salarios_a_receber = 6 + ((carga_horaria - 6) * 1.25);
+        } else {
+          var qtd_salarios_a_receber = carga_horaria;
+        }
+
+        var qtd_salarios_formatado = qtd_salarios_a_receber % 1 === 0 ? qtd_salarios_a_receber.toFixed(0) : qtd_salarios_a_receber.toFixed(2);
+        var valor_salario_mensal_a_receber = qtd_salarios_a_receber * salario_minimo;
+        var resultadoDiv = document.getElementById('resultado');
+        
+        resultadoDiv.className = 'bd-callout bd-callout-info';
+
+        var formatarMoeda = function(valor) {
+          return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        };
+
+        resultadoDiv.innerHTML = `
+          <h5 class="mb-4 text-center text-secondary">Resumo do Cálculo</h5>
+          <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
+            <span class="text-muted">Salário mínimo informado:</span>
+            <strong class="text-dark">${formatarMoeda(salario_minimo)}</strong>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
+            <span class="text-muted">Carga horária diária informada:</span>
+            <strong class="text-dark">${carga_horaria_em_horas} horas</strong>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <span class="text-muted">Quantidade de salário mínimo a receber:</span>
+            <strong class="text-dark">${qtd_salarios_formatado}</strong>
+          </div>
+          <div class="alert alert-success text-center mb-0" style="background-color: #d4edda; border-color: #c3e6cb;">
+            <span class="d-block mb-1 text-success" style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">
+              Salário mínimo profissional mensal
+            </span>
+            <h3 class="mb-0 text-success">
+              ${formatarMoeda(valor_salario_mensal_a_receber)}
+            </h3>
+          </div>
+        `;
+      }
+      function limparCampos() {
+        // Recarrega a página atual, resetando todos os campos e o visual
+        window.location.reload();
+      }
+
+    </script>
+
+
+
+
+  </head>
+
+
+
+  <body style="min-width: 380px;">
+
+    <div class="modal fade" id="modalAlertas" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-warning text-dark">
+            <h5 class="modal-title" id="tituloModalAlerta">Aviso</h5>
+            <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Fechar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-dark" id="corpoModalAlerta">
+            </div>
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Entendi</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-5" style="max-width: 400px;">
+      
+      <h2 class="text-center text-secondary mb-4">Calculadora de Salário Mínimo Profissional</h2>
+      
+      <ul class="nav nav-pills nav-fill mb-4">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="piso-semanal.html">Carga Horária Semanal</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="piso-diario.html">Carga Horária Diária</a>
+        </li>
+      </ul>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text bg-light">R$</span>
+        </div>
+        <input type="text" class="form-control" id="entrada_salario_minimo" placeholder="Digite o valor do salário mínimo*" aria-label="Salário mínimo">
+      </div>
+
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text bg-light">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+              <path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/>
+            </svg>
+          </span>
+        </div>
+        <input type="text" class="form-control" id="entrada_carga_horaria" placeholder="Digite a carga horária diária (hh:mm)" aria-label="Carga horária">
+      </div>
+
+      <div class="d-flex justify-content-center mb-3">
+        <div class="form-text text-muted font-italic">Utilizar o cálculo diário apenas para escala semanal 5x2. Outras jornadas, utilizar o cálculo semanal.</div>
+      </div>
+
+
+      <div class="d-flex justify-content-center mb-3">
+        <button type="button" class="btn btn-outline-success mr-2 px-4" onclick="calcularPiso()">Calcular</button>
+        <button type="button" class="btn btn-outline-danger px-4" onclick="limparCampos()">Limpar</button>
+      </div>
+
+    </div>
+
+    <div class="container d-flex justify-content-center">
+      <div class="col-12 col-md-6">
+        <div id="resultado"></div>
+      </div>
+    </div>
+
+
+    <div class="bd-callout bd-callout-danger" role="alert" style="margin: 30px;">
+
+      * O Salário Mínimo Profissional é calculado com base no salário mínimo vigente** no país, na data de início da vigência do vínculo.
+      Cada hora da jornada diária de trabalho equivale a 1 (um) salário mínimo ao mês. Para jornadas diárias acima de 6
+      horas, é acrescido 25% do valor do salário mínimo para cada hora excedente.
+
+    </div>
+
+    <div class="alert alert-danger" role="alert" style="margin: 30px;">
+
+      ** Conforme a deliberação nº 99/2024 - CEP - CAU/RJ, para vínculos com vigência a partir de
+      3 de março de 2022, o salário mínimo a ser considerado para a base de cálculo é de R$ 1.212,00 (valor congelado
+      conforme decisão do Supremo Tribunal Federal no julgamento conjunto das ADPFs 53, 149 e 171).
+
+    </div>
+
+        <div class="bd-callout bd-callout-info" style="margin: 30px;">
+      <h4>RESOLUÇÃO N° 150, DE 22 DE SETEMBRO DE 2017</h4>
+      <br>
+      <p>
+        “Art. 4º O valor do salário mínimo profissional, devido aos arquitetos e urbanistas, será definido de acordo com a
+        jornada de trabalho fixada no contrato de trabalho ou efetivamente trabalhada.
+        <br><br>
+        § 1° Para jornada de trabalho de 6 (seis) horas diárias, o salário mínimo profissional será fixado no valor
+        equivalente a 6 (seis) vezes o salário mínimo nacional.
+        <br><br>
+        § 2° Para jornadas de trabalho superiores a 6 (seis) horas diárias, o salário mínimo profissional será fixado da
+        seguinte forma:
+        <br><br>
+        I – até a sexta hora, na forma do § 1°;
+        <br>
+        II – para as horas que excederem da sexta hora, o valor equivalente a 1 (uma) vez o salário mínimo nacional
+        acrescido de 25% (vinte e cinco por cento) para cada hora, devido proporcionalmente nas frações de hora.
+        <br><br>
+        § 3° Para jornadas de trabalho inferiores a 6 (seis) horas diárias, o salário mínimo profissional será fixado de
+        forma proporcional, respeitado o parâmetro do § 1° deste artigo, inclusive quanto às frações de hora.”
+      </p>
+    </div>
+
+    <div id="formula_juridico" class="bd-callout bd-callout-info" style="margin: 30px;">
+      <h4>Carga Horária Semanal (CHS) fórmula:</h4>
+      <br>
+      <p>
+        Caso as horas sejam informadas por semana, o salário-mínimo a ser recebido deverá obedecer a fórmula abaixo
+        (elaborada pelo Setor Jurídico):
+        <br><br>
+        CARGA HORÁRIA SEMANAL (CHS) FÓRMULA:
+        <br><br>
+        - Até 30 horas semanais:
+        CHS x 0,2 = SM
+        <br>
+        - Superior a 30 horas semanais:
+        6+[(CHS - 30) x 0,2] x 1,25= SM
+        <br><br>
+        Legenda:
+        <br>
+        CHS: Carga horária semanal
+        <br>
+        SM: Salário Mínimo
+      </p>
+    </div>
+
+
+    <div class="bd-callout bd-callout-info" style="margin: 30px;">
+      <h4 class="mb-3">Série Histórica do Salário Mínimo Nacional:</h4>
+      <div class="table-responsive">
+        <table class="table table-hover">
+
+
+          <thead>
+
+            <tr>
+              <th scope="col">Ano</th>
+              <th scope="col">Vigência</th>
+              <th scope="col">Valor</th>
+              <th scope="col">Ato Legal</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr>
+              <th scope="row">2026</th>
+              <td>01/01/2026</td>
+              <td>R$ 1.621,00</td>
+              <td><a target="_blank" href="https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/decreto/D12797.htm">Decreto 12.797/2025</a></td>
+            </tr>
+
+            <tr>
+              <th scope="row">2025</th>
+              <td>01/01/2025</td>
+              <td>R$ 1.518,00</td>
+              <td><a target="_blank" href="https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/decreto/d12342.htm">Decreto 12.342/2024</a></td>
+            </tr>
+            
+            <tr>
+              <th scope="row">2024</th>
+              <td>01/01/2024</td>
+              <td>R$ 1.412,00</td>
+              <td><a target="_blank"
+                  href="https://www.in.gov.br/web/dou/-/decreto-n-11.864-de-27-de-dezembro-de-2023-533866504">Decreto
+                  11.864/2023</a></td>
+            </tr>
+
+            <tr>
+              <th scope="row">2023</th>
+              <td>01/05/2023</td>
+              <td>R$ 1.320,00</td>
+              <td><a target="_blank" href="https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/L14663.htm">Lei
+                  14.663/2023</a></td>
+            </tr>
+
+            <tr>
+              <th scope="row">2023</th>
+              <td>01/01/2023</td>
+              <td>R$ 1.302,00</td>
+              <td><a target="_blank"
+                  href="https://www.in.gov.br/en/web/dou/-/medida-provisoria-n-1.143-de-12-de-dezembro-de-2022-449723945">MP
+                  1143/2022</a></td>
+            </tr>
+
+            <tr>
+              <th scope="row">2022</th>
+              <td>01/01/2022</td>
+              <td>R$ 1.212,00</td>
+              <td><a target="_blank" href="https://www.planalto.gov.br/ccivil_03/_Ato2019-2022/2022/Lei/L14358.htm">Lei
+                  14.358/2022</a></td>
+            </tr>
+
+            <tr>
+              <th scope="row">2021</th>
+              <td>01/01/2021</td>
+              <td>R$ 1.100,00</td>
+              <td><a target="_blank" href="https://www.planalto.gov.br/ccivil_03/_Ato2019-2022/2021/Lei/L14158.htm">Lei
+                  14.158/2021</a></td>
+            </tr>
+
+            <tr>
+              <th scope="row">2020</th>
+              <td>01/02/2020</td>
+              <td>R$ 1.045,00</td>
+              <td><a target="_blank" href="https://www.planalto.gov.br/ccivil_03/_Ato2019-2022/2020/Lei/L14013.htm">Lei
+                  14.013/2020</a></td>
+            </tr>
+
+            <tr>
+              <th scope="row">2020</th>
+              <td>01/01/2020</td>
+              <td>R$ 1.039,00</td>
+              <td><a target="_blank" href="https://www.planalto.gov.br/ccivil_03/_Ato2019-2022/2020/Lei/L14013.htm">MP
+                  916/2019</a></td>
+            </tr>
+
+            <tr>
+              <th scope="row">2019</th>
+              <td>01/01/2019</td>
+              <td>R$ 998,00</td>
+              <td><a target="_blank"
+                  href="https://www.planalto.gov.br/ccivil_03/_Ato2019-2022/2019/Decreto/D9661.htm">Decreto 9.661/2019</a>
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row">2018</th>
+              <td>01/01/2018</td>
+              <td>R$ 954,00</td>
+              <td><a target="_blank"
+                  href="https://www.planalto.gov.br/ccivil_03/_Ato2015-2018/2017/Decreto/D9255.htm">Decreto 9.255/2017</a>
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row">2017</th>
+              <td>01/01/2017</td>
+              <td>R$ 937,00</td>
+              <td><a target="_blank"
+                  href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/decreto/D8948.htm">Decreto 8.948/2016</a>
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row">2016</th>
+              <td>01/01/2016</td>
+              <td>R$ 880,00</td>
+              <td><a target="_blank"
+                  href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/decreto/d8618.htm">Decreto 8.618/2015</a>
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row">2015</th>
+              <td>01/01/2015</td>
+              <td>R$ 788,00</td>
+              <td><a target="_blank"
+                  href="https://www.planalto.gov.br/CCIVIL_03/_Ato2011-2014/2014/Decreto/D8381.htm">Decreto 8.381/2014</a>
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row">2014</th>
+              <td>01/01/2014</td>
+              <td>R$ 724,00</td>
+              <td><a target="_blank"
+                  href="https://www.planalto.gov.br/CCIVIL_03/_Ato2011-2014/2013/Decreto/D8166.htm">Decreto 8.166/2013</a>
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row">2013</th>
+              <td>01/01/2013</td>
+              <td>R$ 678,00</td>
+              <td><a target="_blank"
+                  href="https://www.planalto.gov.br/ccivil_03/_Ato2011-2014/2012/Decreto/D7872.htm">Decreto 7.872/2012</a>
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row">2012</th>
+              <td>01/01/2012</td>
+              <td>R$ 622,00</td>
+              <td><a target="_blank"
+                  href="https://www.planalto.gov.br/ccivil_03/_Ato2011-2014/2011/Decreto/D7655.htm">Decreto 7.655/2011</a>
+              </td>
+            </tr>
+
+
+          </tbody>
+
+        </table>
+      </div>   
+    </div>
+
+
+
+
+
+    <!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+
+    <script>
+      $('#entrada_salario_minimo').mask('#.##0,00', {reverse: true});
+      $('#entrada_carga_horaria').mask('00:00');
+      //$('.placeholder').mask("00/00/0000", {placeholder: "__/__/____"});
+    </script>
+  </body>
+
+
+</html>

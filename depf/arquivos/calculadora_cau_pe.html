@@ -1,0 +1,369 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Sugestão de Preço de Custo Mínimo de Projeto</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="gestao/library/css/style.css">
+	<link rel="stylesheet" href="precificacao.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no" />
+</head>
+<body>
+	
+	<form action="" id="formprecificacao" name="formprecificacao">
+
+
+		<div class="opcao" style="background-color: #105860">
+			<h3 align="center" style="color: #fff"><strong>Sugestão de Preço de Custo Mínimo de Projeto</strong>
+				<img src="./gestao/library/images/logo.png"></h3>
+				<div class="row">
+
+				</div>
+			</div>
+			<div class="opcao">
+				<h2><span>1.</span> Dados do Projeto</h2>
+				<div class="row">
+					<div class="col-md-6 col-12">
+						<div class="form-group">
+							<label class="control-label" for="nomeprojeto">Nome do Projeto<span class="required"></span> </label>
+							<input type="text" class="form-control" name="nomeprojeto" id="nomeprojeto" value=""
+							>
+
+						</div>					
+					</div>
+					<div class="col-md-6 col-12">
+						<div class="form-group">
+							<label class="control-label" for="nomecliente">Nome do Cliente<span class="required"></span> </label>
+							<input type="text" class="form-control" name="nomecliente" id="nomecliente"
+							 value="">
+						</div>						
+					</div>
+					<div class="col-md-4 col-12">
+						<div class="form-group">
+							<label class="control-label" for="nomearquiteto">Nome do Arq. & Urb.<span class="required"></span> </label>
+							<input type="text" class="form-control" name="nomearquiteto" id="nomearquiteto"
+							 value="">
+
+						</div>					
+					</div>
+
+					<div class="col-md-4 col-12">
+						<div class="form-group">
+							<label class="control-label" for="emailarquiteto">E-mail do Arq. & Urb.<span class="required"></span> </label>
+							<input type="email" class="form-control " name="emailarquiteto" id="emailarquiteto"
+							 value="">
+
+						</div>					
+					</div>
+
+					<div class="col-md-4 col-12">
+						<div class="form-group">
+							<label class="control-label" for="telefonearquiteto">Telefone do Arq. & Urb.<span class="required"></span> </label>
+							<input type="text" class="form-control fone" name="telefonearquiteto" id="telefonearquiteto"
+							 value="">
+						</div>						
+					</div>
+
+
+				</div>
+			</div>	
+			<div class="opcao">
+				<h2><span>2.</span> Tipo de Projeto</h2>
+				<div class="row">
+											<div class="col-md-6">
+							<div class="form-check">
+								<input type="radio" class="form-check-input" id="projetoedificacoes_1" value="projetoedificacoes" name="tipoprojeto" onclick="carregaPasso2(1)" checked="checked" >
+								<label class="form-check-label" for="projetoedificacoes_1">
+									Projeto Arquitetônico de Edificações								</label>
+							</div>	
+						</div>
+
+												<div class="col-md-6">
+							<div class="form-check">
+								<input type="radio" class="form-check-input" id="projetoedificacoes_2" value="projetoedificacoes" name="tipoprojeto" onclick="carregaPasso2(2)">
+								<label class="form-check-label" for="projetoedificacoes_2">
+									Projeto de Arquitetura de Interiores								</label>
+							</div>	
+						</div>
+
+											
+                    </div>
+				</div>
+
+				<div class="opcao">
+					<h2><span>3.</span> Local</h2>
+					<div class="row" id="div_local">
+						<div class='col-md-12 col-6'>
+							Selecione o tipo de projeto
+						</div>
+					</div>	
+
+					<div class="opcao">
+						<h2><span>4.</span> Discriminação</h2>
+						<div class="row" id="div_discrimicacao">
+							<div class="col-md-12 col-6">
+								Selecione o local	
+							</div>
+
+						</div>	
+					</div>
+					<div class="opcao">
+						<h2><span>5.</span> Dados Complementares</h2>
+						<div class="row">
+							<div class="col-md-3 col-6">
+								<div class="form-group">
+									<label class="control-label" for="usuario">Área Total<span class="required"></span> </label>
+									<input type="text" class="form-control moeda" name="login" id="area_total" value="0,00"
+									onblur="precoMinimo()">
+									<div class="medida">m²</div>
+
+								</div>					
+							</div>
+							<div class="col-md-3 col-6">
+								<div class="form-group">
+									<label class="control-label" for="usuario">Impostos<span class="required"></span> </label>
+									<input type="text" class="form-control moeda" name="login" id="impostos"
+									onblur="precoMinimo()" value="0,00">
+									<div class="medida">%</div>
+
+								</div>					
+							</div>
+							<div class="col-md-3 col-6">
+								<div class="form-group">
+									<label class="control-label" for="usuario">Outras Despesas<span class="required"></span> </label>
+									<input type="text" class="form-control moeda" name="login" id="outras_despesas"
+									onblur="precoMinimo()" value="0,00">
+									<div class="medida">R$</div>
+
+								</div>					
+							</div>
+							<div class="col-md-3 col-6">
+								<div class="form-group">
+									<label class="control-label" for="usuario">Lucro<span class="required"></span> </label>
+									<input type="text" class="form-control moeda" name="login" id="lucro"
+									onblur="precoMinimo()" value="0,00">
+									<div class="medida">%</div>
+								</div>						
+							</div>
+						</div>
+					</div>	
+
+				</div>
+				<button type="reset" class="limpar btn " title="Limpar campos" onclick="limp()"><i class="fas fa-eraser"></i></button>
+
+				<div class="obs">
+					<div class="row">
+						<div class="col-md-6"> 
+							<b>Atenção:</b> O preço mínimo não inclui encargos e lucros. Os valores contemplam os menores preços disponibilizados da tabela. <br>
+							Para maior detalhamento, acessar: <a href="https://honorario.caubr.gov.br" target="_blank">https://honorario.caubr.gov.br</a>
+						</div>
+
+
+						<div class="col-md-6">
+							Valores para o Estado de Pernambuco<br>
+							Projeto completo: Estudo Preliminar, Anteprojeto, Projeto Básico/Legal, Projeto Executivo e Detalhamento
+
+						</div>
+
+					</div>	
+
+				</div>
+				<hr>
+
+				<h1>Sugestão de Preço de Custo Mínimo de Projeto</h1>
+				<br>
+				<div class="row">
+					<div class="col-md-4 mb-3">
+						<div class="resul" id="">
+							<span>Preço (m2)</span>
+							&nbsp;
+							<label style="color: white;" id="div_preco"></label>
+						</div>
+					</div>
+					<div class="col-md-4 mb-3">
+						<div class="resul" id="">
+							<span>Preço Mínimo (R$)</span>
+							&nbsp;
+							<label style="color: white;" id="div_preco_minimo"></label>
+						</div>
+					</div>
+					<div class="col-md-4 mb-3">
+						<div class="resul" id="">
+							<span>Preço Total (R$)</span>
+							&nbsp;
+							<label style="color: white;" id="div_preco_total"></label>
+						</div>
+					</div>
+
+					<div class="col-md-12 mb-12">
+						<div style="height: 30px!important;" align="center">
+							<label style="font-size: 12px;">Todos os direitos reservados. Desenvolvido por CAU/PE</label>
+						</div>
+					</div>
+
+				</div>
+				<div class="acoes">
+					<button type="button" class="limpar btn " title="Imprimir página"><a href="precificacao.php" target="_blank"><i class="fas fa-print"></i></a></button>
+
+
+					<button type="button" class="limpar btn " title="Enviar por e-mail" style="margin-right: 3px;"><a href="#ex1" rel="modal:open"><i class="fas fa-envelope-open-text"></i></a></button>
+				</div>
+			</form>
+
+			<div id="ex1" class="modal" style="color: black;height: 100px; width: 1200px;">
+				E-mails: <input type="text" id="emails" placeholder="separados por ;" style="width:320px">
+				<button type="button" class="limpar btn " onclick="enviarEmail()"><i class="fas fa-paper-plane"></i></button>
+				<label style="text-align: center; left: 20%; display: none;" id="label_email">E-mail enviado!</label>
+			</div>
+
+		</body>
+
+		<script type="text/javascript" src="./gestao/library/js/jquery.min.js"></script>
+
+		<script src="./gestao/library/js/popper.min.js"></script>
+		<script src="./gestao/library/js/bootstrap.min.js"></script>
+
+		<script src="./gestao/library/js/jquery.priceformat.min.js"></script>
+
+		<!-- jQuery Modal -->
+		<script src="./gestao/library/js/jquery.modal.min.js"></script>
+		<link rel="stylesheet" href="./gestao/library/js/jquery.modal.min.css" />
+
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+
+
+		</html>
+
+		<script type="text/javascript">
+
+			$( document ).ready(function() {
+				carregaPasso2();
+
+				$('.moeda').priceFormat({
+					prefix : '',
+					centsSeparator : ',',
+					thousandsSeparator : '.',
+					limit:9,
+					centsLimit: 2
+				});
+
+
+
+				jQuery(".fone")
+		        .mask("(99) 9999-9999?9")
+		        .focusout(function (event) {  
+		            var target, phone, element;  
+		            target = (event.currentTarget) ? event.currentTarget : event.srcElement;  
+		            phone = target.value.replace(/\D/g, '');
+		            element = $(target);  
+		            element.unmask();  
+		            if(phone.length > 10) {  
+		                element.mask("(99) 99999-999?9");  
+		            } else {  
+		                element.mask("(99) 9999-9999?9");  
+		            }  
+		        });
+
+
+
+
+			});
+
+			function limp() {
+				$("#div_preco").html('0,00');
+				$("#div_preco_minimo").html('0,00');
+				$("#div_preco_total").html('0,00');
+			}
+
+			function enviarEmail() {
+				var emails = $("#emails").val();
+
+				$.post("envia_email.php", {email: emails}, function(retorno){
+					$("#label_email").show();
+				});
+
+			}
+
+			function carregaPasso2(tipo=1) {
+				tipo_global = tipo;
+				$.post("dados.php", {acao:"carregaPasso2", tipo: tipo}, function(retorno){
+					$("#div_local").html(retorno);
+				});
+			}
+
+			function carregaPasso3(local2) {
+				local = local2;
+
+				$.post("dados.php", {acao:"carregaPasso3", tipo: tipo_global, local: local2}, function(retorno){
+					$("#div_discrimicacao").html(retorno);
+				});
+			}
+
+			function carregaValor(moeda_sem_formatacao2, moeda_formatada2) {
+				moeda_sem_formatacao = moeda_sem_formatacao2;
+				moeda_formatada = moeda_formatada2;
+
+				$("#div_preco").html(moeda_formatada);
+				precoMinimo();
+			}
+
+			function precoMinimo() {
+
+				discriminacao = $("input[name=discriminacao]:checked").val();
+
+				var area_total = $("#area_total").val().replace(".", "").replace(".", "").replace(",", ".");
+				if (area_total == "") {
+					area_total = 1;
+				}
+
+				var outras_despesas = $("#outras_despesas").val().replace(".", "").replace(".", "").replace(",", ".");
+				if (outras_despesas == "") {
+					outras_despesas = 0;
+				}
+
+				var valor 		= moeda_sem_formatacao * area_total;
+				var valor_total = parseFloat(valor);
+
+				var impostos = $("#impostos").val().replace(".", "").replace(".", "").replace(",", ".");
+				if (impostos == "") {
+					impostos2 = 0;
+				} else {
+					impostos2 = valor_total * impostos / 100;
+				}	
+
+				var lucro = $("#lucro").val().replace(".", "").replace(".", "").replace(",", ".");
+				if (lucro < 0) {
+					lucro2 = 0;
+				} else {
+					lucro2 = valor_total * lucro / 100;
+				}
+
+				var valor_total = valor_total + parseFloat(impostos2) +  parseFloat(lucro2)  +  parseFloat(outras_despesas) ;
+
+				$("#div_preco_minimo").html(mascaraValor(valor.toFixed(2)));
+				$("#div_preco_total").html(mascaraValor(valor_total.toFixed(2)));
+
+				$.post("salvar_dados.php", {tipo: tipo_global, local: local, discriminacao: discriminacao, area_total:area_total, impostos:impostos, outras_despesas:outras_despesas, lucro:lucro, preco_minimo:mascaraValor(valor.toFixed(2)), preco_total:mascaraValor(valor_total.toFixed(2)), preco_metro:moeda_formatada, nomeprojeto:$('#nomeprojeto').val(), nomecliente:$('#nomecliente').val(), nomearquiteto:$('#nomearquiteto').val(), emailarquiteto:$('#emailarquiteto').val(), telefonearquiteto:$('#telefonearquiteto').val()}, function(retorno){
+
+				});
+
+
+
+			}
+
+
+			function mascaraValor(valor) {
+				valor = valor.toString().replace(/\D/g,"");
+				valor = valor.toString().replace(/(\d)(\d{8})$/,"$1.$2");
+				valor = valor.toString().replace(/(\d)(\d{5})$/,"$1.$2");
+				valor = valor.toString().replace(/(\d)(\d{2})$/,"$1,$2");
+				return valor                    
+			}
+
+
+		</script>

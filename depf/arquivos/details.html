@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navegação Lateral com Details e Barra de Rolagem</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-size: 14px; /* Preferência do usuário */
+        }
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 60px;
+            background-color: #f8f9fa;
+            border-right: 1px solid #ddd;
+            overflow-y: auto; /* Adiciona a barra de rolagem vertical */
+        }
+        .content {
+            margin-left: 250px; /* Largura da barra lateral */
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navegação Lateral -->
+    <nav class="sidebar p-3">
+        <h5>Navegação</h5>
+        <details open>
+            <summary class="btn btn-link">RRT Etemporâneo</summary>
+            <ul class="list-unstyled ms-3">
+                <li><a href="#secao1-parte1" class="text-decoration-none">Parte 1</a></li>
+                <li><a href="#secao1-parte2" class="text-decoration-none">Parte 2</a></li>
+                <li><a href="#secao2-parte1" class="text-decoration-none">Parte 3</a></li>
+                <li><a href="#secao2-parte2" class="text-decoration-none">Parte 4</a></li>
+                <li><a href="#secao3-parte1" class="text-decoration-none">Parte 5</a></li>
+                <li><a href="#secao3-parte2" class="text-decoration-none">Parte 6</a></li>
+                <li><a href="#secao4-parte1" class="text-decoration-none">Parte 7</a></li>
+                <li><a href="#secao4-parte2" class="text-decoration-none">Parte 8</a></li>
+                <li><a href="#secao5-parte1" class="text-decoration-none">Parte 9</a></li>
+                <li><a href="#secao5-parte2" class="text-decoration-none">Parte falta declaração de cancelamento ou justificativa</a></li>
+                <li><a href="#secao6-parte1" class="text-decoration-none">Parte 11</a></li>
+                <li><a href="#secao6-parte2" class="text-decoration-none">Parte 12</a></li>
+                <li><a href="#secao7-parte1" class="text-decoration-none">Parte 13</a></li>
+                <li><a href="#secao7-parte2" class="text-decoration-none">Parte 14</a></li>
+                <li><a href="#secao8-parte1" class="text-decoration-none">Parte 15</a></li>
+                <li><a href="#secao8-parte2" class="text-decoration-none">Parte 16</a></li>
+                <li><a href="#secao9-parte1" class="text-decoration-none">Parte 17</a></li>
+                <li><a href="#secao9-parte2" class="text-decoration-none">Parte 18</a></li>
+                <li><a href="#secao10-parte1" class="text-decoration-none">Parte 19</a></li>
+            </ul>
+        </details>
+        <details>
+            <summary class="btn btn-link">RRT Derivado</summary>
+            <ul class="list-unstyled ms-3">
+                <li><a href="#secao2-parte1" class="text-decoration-none">Parte 1</a></li>
+                <li><a href="#secao2-parte2" class="text-decoration-none">Parte 2</a></li>
+            </ul>
+        </details>
+        <details>
+            <summary class="btn btn-link">RRT Exterior</summary>
+            <ul class="list-unstyled ms-3">
+                <li><a href="#secao3-parte1" class="text-decoration-none">Parte 1</a></li>
+                <li><a href="#secao3-parte2" class="text-decoration-none">Parte 2</a></li>
+            </ul>
+        </details>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <div class="content">
+        <h2 id="secao1-parte1">Seção 1 - Parte 1</h2>
+        <p>Este é o conteúdo da Seção 1, Parte 1. Pode incluir texto, imagens, ou qualquer outro tipo de conteúdo.</p>
+
+        <h2 id="secao1-parte2">Seção 1 - Parte 2</h2>
+        <p>Este é o conteúdo da Seção 1, Parte 2.</p>
+
+        <h2 id="secao2-parte1">Seção 2 - Parte 1</h2>
+        <p>Este é o conteúdo da Seção 2, Parte 1.</p>
+
+        <h2 id="secao2-parte2">Seção 2 - Parte 2</h2>
+        <p>Este é o conteúdo da Seção 2, Parte 2.</p>
+
+        <h2 id="secao3-parte1">Seção 3 - Parte 1</h2>
+        <p>Este é o conteúdo da Seção 3, Parte 1.</p>
+
+        <h2 id="secao3-parte2">Seção 3 - Parte 2</h2>
+        <p>Este é o conteúdo da Seção 3, Parte 2.</p>
+
+        <h2 id="secao4-parte1">Seção 4 - Parte 1</h2>
+        <p>Este é o conteúdo da Seção 4, Parte 1.</p>
+
+        <h2 id="secao4-parte2">Seção 4 - Parte 2</h2>
+        <p>Este é o conteúdo da Seção 4, Parte 2.</p>
+
+        <h2 id="secao5-parte1">Seção 5 - Parte 1</h2>
+        <p>Este é o conteúdo da Seção 5, Parte 1.</p>
+
+        <h2 id="secao5-parte2">Seção 5 - Parte 2</h2>
+        <p>Este é o conteúdo da Seção 5, Parte 2.</p>
+    </div>
+
+    <!-- Bootstrap JS (Opcional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

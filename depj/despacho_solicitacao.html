@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WG7WBKELRJ"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-WG7WBKELRJ');
+        </script>
+
+
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="robots" content="noindex, nofollow">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+        <!-- Jodit CSS -->
+        <link rel="stylesheet" href="jodit.css">
+
+        <link rel="script" href="/textos.js">
+
+        <title>Despachos PJ</title>
+        
+        <style>
+            
+            .edit-icon {
+                cursor: pointer;
+                margin-left: 10px;
+                color: #005abb;
+                /* #14385d */
+            }
+            .info-icon {
+                cursor: pointer;
+                margin-left: 10px;
+                color: rgba(235, 153, 1, 0.884);
+                /* #fcdb04 */
+            }
+
+            .siccau-color{
+                background-color: #14385d;
+
+            }
+
+            .dropdown-item:hover {
+                background-color: #14395d28;
+
+            }
+
+        /* Estilos para o loader */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(255, 255, 255, 0.8); /* Fundo semitransparente */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        /* Criando um spinner com CSS */
+        .spinner {
+            border: 10px solid #f3f3f3; /* Cor de fundo do spinner */
+            border-top: 10px solid #3498db; /* Cor do spinner */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+        }
+
+        /* Definindo a animação */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Estilização do texto */
+        #loader div {
+            font-size: 18px;
+            color: #333;
+            margin-top: 20px; /* Espaço entre o spinner e o texto */
+        }
+
+        </style>
+
+    </head>
+
+    <body>
+            
+        <!--------------------------------------- nav superior ----------------------------------------->
+
+        <nav class="navbar navbar-expand-lg navbar-dark siccau-color">
+
+            <!-- brand -->
+            <a href="#"><img src="logo_novo.png" width="315" height="75" alt="Início" class="img-fluid"></a>
+            <!-- <a class="navbar-brand fa-lg pt-3 pb-3" href="">Despachos PJ</a> -->
+
+            <!-- collapse button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+                <ul class="navbar-nav ">
+
+                    <!-- Dropdown com atividades -->
+                    <li class="nav-item dropdown active ">
+                        
+                        <a class="nav-link dropdown-toggle d-flex align-items-center ml-3" style="width: 130px; height: 100%;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                            Despachos PJ
+                        </a>
+
+                        <div class="dropdown-menu">
+                                                       
+                            <a class="dropdown-item" href="despacho_solicitacao_novo.html">Solicitação de Registro <span class="badge badge-success">Despachos atualizados</span></a>
+                            <div class="dropdown-divider"></div>                          
+                            <a class="dropdown-item" href="alteracao-cadastral.html">Alteração Cadastral</a>
+                            <!-- <a class="dropdown-item" href="alteracao_cadastral.html">Alteração Cadastral <span class="badge badge-danger">Versão Antiga</span></a> -->
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="inclusao-email.html">Inclusão de email</a>
+                            <!-- <a class="dropdown-item" href="inclusao_email.html">Inclusão de email <span class="badge badge-danger">Versão Antiga</span></a> -->
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="baixa-registro-empresa.html">Baixa de Registro de Empresa</a>
+                            <!-- <a class="dropdown-item" href="baixa_registro_empresa.html">Baixa de Registro de Empresa <span class="badge badge-danger">Versão Antiga</span></a> -->
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="baixa-registro-empresa-oficio.html">Baixa de Registro de Empresa de Ofício</a>
+                            <!-- <a class="dropdown-item" href="baixa_registro_empresa_oficio.html">Baixa de Registro de Empresa de Ofício <span class="badge badge-danger">Versão Antiga</span></a> -->
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="interrupcao-registro-empresa.html">Interrupção de Registro de Empresa</a>
+                            <!-- <a class="dropdown-item" href="interrupcao_registro_empresa.html">Interrupção de Registro de Empresa <span class="badge badge-danger">Versão Antiga</span></a> -->
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="inclusao-responsavel-tecnico.html">Inclusão de Responsável Técnico</a>
+                            <!-- <a class="dropdown-item" href="inclusao_responsavel_tecnico.html">Inclusão de Responsável Técnico <span class="badge badge-danger">Versão Antiga</span></a> -->
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="baixa-responsavel-tecnico.html">Baixa de Responsável Técnico</a>
+                            <!-- <a class="dropdown-item" href="baixa_responsavel_tecnico.html">Baixa de Responsável Técnico <span class="badge badge-danger">Versão Antiga</span></a> -->
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="desconto-anuidade.html">Desconto de Anuidade</a>
+                            <!-- <a class="dropdown-item" href="desconto_anuidade.html">Desconto de Anuidade <span class="badge badge-danger">Versão Antiga</span></a> -->
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="crq-pj.html">CRQPJ</a>
+                            <!-- <a class="dropdown-item" href="crqpj.html">CRQPJ <span class="badge badge-danger">Versão Antiga</span></a> -->
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="visto-previo.html">Visto Prévio</a>
+                            <!-- <a class="dropdown-item" href="visto_previo.html">Visto Prévio <span class="badge badge-danger">Versão Antiga</span></a> -->
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="despachos-gerais.html">Despachos Gerais</a>
+                            <!-- <a class="dropdown-item" href="despachos_gerais.html">Despachos Gerais <span class="badge badge-danger">Versão Antiga</span></a> -->
+                            
+                        </div>
+                    </li>
+
+                    <!-- links demais páginas -->
+                    <ul class="navbar-nav flex-wrap">
+                        <li class="nav-item align-items-center justify-content-center">
+                            <a class="nav-link" href="https://acesso.caubr.gov.br/", target="_blank">SICCAU</a>
+                        </li>
+                        <li class="nav-item align-items-center justify-content-center">
+                            <a class="nav-link" href="https://conselhoarquitetura.sharepoint.com/:x:/r/sites/CAUSP-DRIVE/_layouts/15/Doc.aspx?sourcedoc=%7BA1016DBA-25B5-4B3F-8EC5-3C31AB948F7A%7D&file=DESPACHOS-PJ.xlsx&action=default&mobileredirect=true", target="_blank">Despachos</a>
+                        </li>
+                        <li class="nav-item align-items-center justify-content-center">
+                            <a class="nav-link" href="https://conselhoarquitetura.sharepoint.com/:x:/r/sites/CAUSP-DRIVE/_layouts/15/Doc.aspx?sourcedoc=%7BA315911C-C43C-49D4-9B2C-47E613E30E1F%7D&file=EVENTOS%20RELEVANTES%20PJ.xlsx&action=default&mobileredirect=true", target="_blank">Histórico de Eventos</a>
+                        </li>
+                        <li class="nav-item align-items-center justify-content-center">
+                            <a class="nav-link" href="https://n-tech4b.github.io/despachos-pj/relatorio_1_tri_2023", target="_blank">Relatório</a>
+                        </li>
+                        <li class="nav-item align-items-center justify-content-center">
+                            <!-- <a class="nav-link" href="https://conselhoarquitetura.sharepoint.com/:x:/r/sites/CAUSP-DRIVE/_layouts/15/Doc.aspx?sourcedoc=%7BB189AD91-4DE2-4EF5-B83F-47C519CC63B0%7D&file=CALCULO%20SALARIO%20MINIMO.xlsx&action=default&mobileredirect=true", target="_blank">Piso Salarial</a> -->
+                        </li>
+                        <li class="nav-item align-items-center justify-content-center">
+                            <a class="nav-link" href="https://n-tech4b.github.io/despachos-pj/piso-semanal", target="_blank">Calculadora Piso</a>
+                        </li>
+                        <li class="nav-item align-items-center justify-content-center">
+                            <a class="nav-link" href="https://caurj.github.io/despachos-depj-main/consulta_cnae.html", target="_blank"><span>CNAE</span></a>
+                        </li>
+                        <li class="nav-item align-items-center justify-content-center">
+                            <a class="nav-link" href="https://manualpj.netlify.app/", target="_blank"><span>Manuais</span></a>
+                        </li>         
+                        <li class="nav-item align-items-center justify-content-center">
+                            <a class="nav-link" href="https://conselhoarquitetura.sharepoint.com/:x:/r/sites/CAUSP-DRIVE/_layouts/15/Doc.aspx?sourcedoc=%7B8CF9D546-0417-4500-8A9D-D40BCA4024FB%7D&file=Planilha%20agendamento%20nova.xlsm&action=default&mobileredirect=true", target="_blank">Agendamento</a>
+                        </li>
+                        <li class="nav-item align-items-center justify-content-center">
+                            <a class="nav-link" href="https://transparencia.caubr.gov.br/resolucoes/", target="_blank">Resoluções</a>
+                        </li>
+                        <li class="nav-item align-items-center justify-content-center">
+                            <a class="nav-link" href="https://conselhoarquitetura.sharepoint.com/:f:/r/sites/CAUSP-DRIVE/Documentos%20Partilhados/General/TECNICA_PJ/PJ/ORIENTA%C3%87%C3%95ES%20PJ?csf=1&web=1&e=ykzLaM", target="_blank">Orientações PJ</a>
+                        </li>
+                    </ul>
+                </ul>
+            </div>
+        </nav>
+            
+        <!--------------------------------------- area elaboração do despacho ---------------------------------------->
+
+        <div class="container-fluid" >
+
+            <p class="my-4"><a href="https://n-tech4b.github.io/despachos-depj/despacho_solicitacao.html">Clique aqui</a> para acessar a nova versão de despachos.</p>
+
+        </div>
+
+        
+    
+        <!-- JavaScript (Opcional) -->
+        <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        
+        <script>
+
+        $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+        })
+            
+        </script>
+
+    </body>
+</html>

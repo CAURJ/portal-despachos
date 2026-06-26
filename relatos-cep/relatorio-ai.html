@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jodit/build/jodit.min.css">
+    <title>Relatório — Julgamento de AI — CEP CAU/RJ</title>
+    <style>
+        body {
+            min-width: 720px;
+            background-color: #f8f9fa;
+        }
+
+        /* ── Formulário ──────────────────────────────────────── */
+        .form-section {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+        }
+
+        .form-section legend {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #14385d;
+            padding: 0 6px;
+            width: auto;
+        }
+
+        /* ── Preview do documento ────────────────────────────── */
+        #div_relato_final {
+            max-width: 820px;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            line-height: 1.5;
+            background: white;
+            border: 1px solid #dee2e6;
+            padding: 28px 36px;
+        }
+
+        .doc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 12px;
+        }
+
+        .doc-table td {
+            border: 1px solid #333;
+            padding: 5px 8px;
+            vertical-align: top;
+        }
+
+        .doc-cabecalho-titulo {
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 0.18em;
+            padding: 6px 8px;
+            background-color: #d9d9d9;
+        }
+
+        .doc-secao-titulo {
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 0.12em;
+            padding: 6px 8px;
+            background-color: #d9d9d9;
+        }
+
+        /* ── Seções de texto editáveis diretamente ───────────── */
+        .texto-editavel {
+            min-height: 28px;
+            padding: 4px 2px;
+            border: 1px dashed transparent;
+            border-radius: 3px;
+            outline: none;
+            transition: border-color 0.15s, background-color 0.15s;
+            line-height: 1.6;
+        }
+
+
+        .texto-editavel:hover {
+            border-color: #c8daf5;
+        }
+
+        .texto-editavel:focus {
+            border-color: #90c0f8;
+            background-color: #fafcff;
+        }
+
+        .texto-editavel:empty::before {
+            content: attr(data-placeholder);
+            color: #bbb;
+            font-style: italic;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ══ NAVBAR ═══════════════════════════════════════════════ -->
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #14385d;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html" style="font-size: 1rem;">← Relatos CEP</a>
+            <span class="navbar-text" style="color: rgba(255,255,255,0.6); font-size: 0.88rem;">
+                Relatório do Conselheiro — Julgamento de Auto de Infração
+            </span>
+        </div>
+    </nav>
+
+    <!-- ══ FORMULÁRIO ═══════════════════════════════════════════ -->
+    <div class="container mt-3">
+
+        <!-- Dados do processo -->
+        <fieldset class="form-section">
+            <legend>Dados do Processo</legend>
+            <div class="form-row mt-1">
+                <div class="form-group col-md-5 mb-2">
+                    <label class="small mb-1" for="inp_processo">Processo (Protocolo)</label>
+                    <input type="text" class="form-control form-control-sm" id="inp_processo"
+                        placeholder="ex: 1990661/2024">
+                </div>
+                <div class="form-group col-md-4 mb-2">
+                    <label class="small mb-1" for="inp_ai">Auto de Infração</label>
+                    <input type="text" class="form-control form-control-sm" id="inp_ai"
+                        placeholder="ex: 1000143078/2021">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-5 mb-2">
+                    <label class="small mb-1" for="inp_autuado">Autuado(a)</label>
+                    <input type="text" class="form-control form-control-sm" id="inp_autuado"
+                        placeholder="Nome completo">
+                </div>
+                <div class="form-group col-md-4 mb-2">
+                    <label class="small mb-1" for="inp_relator">Conselheiro(a) Relator(a)</label>
+                    <select class="form-control form-control-sm" id="inp_relator">
+                        <option value="">— selecione —</option>
+                        <option disabled>──── Titulares ────</option>
+                        <option>Anibal Sabrosa Gomes da Costa</option>
+                        <option>Carlos Augusto Abreu</option>
+                        <option>Daiane Domingos dos Santos</option>
+                        <option>Daniel Mendes Mesquita de Sousa</option>
+                        <option>Eduardo Ribeiro Dos Santos</option>
+                        <option>Fabio Bruno de Oliveira</option>
+                        <option>Gustavo Monteiro Manhães</option>
+                        <option>Igor Freire de Vetyemy</option>
+                        <option>Isabel Rocha</option>
+                        <option>José Antonio Mendes Casas Novas</option>
+                        <option>Julia Monteiro Santana</option>
+                        <option>Junia Pinheiro de Lacerda</option>
+                        <option>Katia Maria Farah Arruda</option>
+                        <option>Luciana da Silva Mayrink</option>
+                        <option>Luis Fernando Valverde Salandía</option>
+                        <option>Luiz Othon Agnese Bezerra de Mello</option>
+                        <option>Marllon Sevilha da Silva</option>
+                        <option>Marta Regina Ribeiro Costa</option>
+                        <option>Michelle Beatrice Fernandes</option>
+                        <option>Millena Caroline Moraes de Miranda</option>
+                        <option>Paulo Oscar Saad</option>
+                        <option>Renata da Rocha Moreira Emiliao</option>
+                        <option>Savana Maria de Freitas</option>
+                        <option>Sydnei Dias Menezes</option>
+                        <option>Tanya Argentina Cano Collado</option>
+                        <option>Tayane de Mello Yanez Nogueira</option>
+                        <option>Ticianne Ribeiro de Souza</option>
+                        <option>Vivianne Sampaio Vasques</option>
+                        <option disabled>──── Suplentes ────</option>
+                        <option>Alexia de Araujo Rodrigues</option>
+                        <option>Alyne Fernanda Cardoso Reis</option>
+                        <option>Anita Louise Braga Delmas de Lima</option>
+                        <option>Artur José Macedo de Oliveira</option>
+                        <option>Christiane Duarte Teixeira</option>
+                        <option>Daniele Bento Ruas</option>
+                        <option>Denilson dos Santos Andrade</option>
+                        <option>Felipe Sacramento Xavier</option>
+                        <option>Gabriella Facciolli Maia</option>
+                        <option>Gustavo Juca Ferreira Jorge</option>
+                        <option>Júlio César da Rocha de Magalhães</option>
+                        <option>Marcelino da Silva Fernandes</option>
+                        <option>Marcelo Augusto Gonzales Felix Filho</option>
+                        <option>Maria Emilia Silva Lucas Tobias</option>
+                        <option>Milton Rattes de Aguiar</option>
+                        <option>Paulo Tadeu Costa</option>
+                        <option>Rafael Salmaso Coutinho Costa da Fonte Ferreira</option>
+                        <option>Ranieri Barbosa Eliziario</option>
+                        <option>Rita de Cassia Belart de Matos Mandarino</option>
+                        <option>Sandra Hiromi Kokudai</option>
+                        <option>Silvio Roberto Macedo Leal Junior</option>
+                        <option>Stéfany dos Santos Silva</option>
+                        <option>Teresa Cristina Menezes de Oliveira</option>
+                        <option>Vasco de Azevedo Acioli</option>
+                        <option>Wagner Barros Da Fonseca</option>
+                        <option>Wiliam Fernando Gomez</option>
+                        <option>Will Robson Coelho</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6 mb-0">
+                    <label class="small mb-1" for="inp_localizacao">Localização</label>
+                    <input type="text" class="form-control form-control-sm" id="inp_localizacao"
+                        placeholder="Rua X, nº Y, bairro Z, CEP XXXXX-XXX, Município, UF.">
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- Origem -->
+        <fieldset class="form-section">
+            <legend>Origem</legend>
+            <div class="mt-1">
+                <div class="form-check mb-1">
+                    <input class="form-check-input" type="radio" name="origem" id="radio_rotina"
+                        value="rotina" checked>
+                    <label class="form-check-label small" for="radio_rotina">Rotina de Fiscalização</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="origem" id="radio_denuncia"
+                        value="denuncia">
+                    <label class="form-check-label small" for="radio_denuncia">Denúncia</label>
+                </div>
+                <div id="div_campos_denuncia" class="mt-2 pl-3" style="display: none;">
+                    <div class="form-row">
+                        <div class="form-group col-md-5 mb-0">
+                            <label class="small mb-1" for="inp_denunciante">Denunciante</label>
+                            <input type="text" class="form-control form-control-sm" id="inp_denunciante">
+                        </div>
+                        <div class="form-group col-md-5 mb-0">
+                            <label class="small mb-1" for="inp_denunciado">Denunciado(a)</label>
+                            <input type="text" class="form-control form-control-sm" id="inp_denunciado">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- Texto do relatório -->
+        <fieldset class="form-section">
+            <legend>Texto do Relatório</legend>
+            <div class="form-group mt-1 mb-2">
+                <label class="small mb-1"><strong>Resumo do processo</strong></label>
+                <textarea id="inp_resumo"></textarea>
+            </div>
+            <div class="form-group mb-0">
+                <label class="small mb-1">Fundamentação / Conclusão</label>
+                <textarea id="inp_conclusao"></textarea>
+            </div>
+        </fieldset>
+
+        <!-- Voto -->
+        <fieldset class="form-section">
+            <legend>Voto</legend>
+            <div class="mt-1">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="chk_manutencao">
+                    <label class="form-check-label small" for="chk_manutencao">manutenção</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="chk_arquivamento">
+                    <label class="form-check-label small" for="chk_arquivamento">arquivamento</label>
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- Fatores Atenuantes -->
+        <fieldset class="form-section">
+            <legend>Fatores Atenuantes <span style="font-weight: normal; color: #6c757d;">(Tabela IV – Res. 198)</span></legend>
+            <div class="mt-1">
+                <div class="form-check mb-1">
+                    <input class="form-check-input" type="checkbox" id="chk_fat1">
+                    <label class="form-check-label small" for="chk_fat1">
+                        Comprovar insuficiência econômica da pessoa física ou jurídica autuada;
+                    </label>
+                </div>
+                <div class="form-check mb-1">
+                    <input class="form-check-input" type="checkbox" id="chk_fat2">
+                    <label class="form-check-label small" for="chk_fat2">
+                        Cometer infração sob coação, ou em cumprimento de ordem de autoridade superior,
+                        provocada por ato irregular de outrem;
+                    </label>
+                </div>
+                <div class="form-check mb-1">
+                    <input class="form-check-input" type="checkbox" id="chk_fat3">
+                    <label class="form-check-label small" for="chk_fat3">
+                        Praticar o fato por relevante valor social;
+                    </label>
+                </div>
+                <div class="form-check mb-1">
+                    <input class="form-check-input" type="checkbox" id="chk_fat4">
+                    <label class="form-check-label small" for="chk_fat4">
+                        Reparar eventuais danos antes do julgamento pela CEP-CAU/UF;
+                    </label>
+                </div>
+                <div class="form-check mb-1">
+                    <input class="form-check-input" type="checkbox" id="chk_fat5">
+                    <label class="form-check-label small" for="chk_fat5">
+                        Eliminar o fato gerador do auto de infração.
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="chk_fat6">
+                    <label class="form-check-label small" for="chk_fat6">
+                        Não se aplica.
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- Data -->
+        <fieldset class="form-section">
+            <legend>Data</legend>
+            <div class="mt-1 d-flex align-items-center flex-wrap" style="gap: 6px;">
+                <span class="small">Rio de Janeiro/RJ,</span>
+                <input type="number" class="form-control form-control-sm" id="inp_dia"
+                    style="width: 65px;" min="1" max="31" placeholder="dia">
+                <span class="small">de</span>
+                <select class="form-control form-control-sm" id="inp_mes" style="width: 148px;">
+                    <option value="">— mês —</option>
+                    <option>janeiro</option>
+                    <option>fevereiro</option>
+                    <option>março</option>
+                    <option>abril</option>
+                    <option>maio</option>
+                    <option>junho</option>
+                    <option>julho</option>
+                    <option>agosto</option>
+                    <option>setembro</option>
+                    <option>outubro</option>
+                    <option>novembro</option>
+                    <option>dezembro</option>
+                </select>
+                <span class="small">de</span>
+                <input type="number" class="form-control form-control-sm" id="inp_ano"
+                    style="width: 82px;" placeholder="ano">
+            </div>
+        </fieldset>
+
+    </div>
+
+    <!-- ══ BOTÕES ════════════════════════════════════════════════ -->
+    <div class="container text-center mb-4">
+        <button class="btn btn-sm btn-primary mr-2" onclick="atualizar()">
+            <strong>Atualizar</strong>
+        </button>
+        <button class="btn btn-sm btn-secondary mr-2" onclick="printDiv('div_relato_final')">
+            <strong>Imprimir</strong>
+        </button>
+        <button class="btn btn-sm btn-outline-danger" onclick="novoProcesso()">
+            Novo processo
+        </button>
+    </div>
+
+    <!-- ══ PREVIEW DO DOCUMENTO ══════════════════════════════════ -->
+    <div class="container mb-5">
+        <div id="div_relato_final">
+
+            <!-- Título da comissão -->
+            <p style="text-align: center; letter-spacing: 0.22em; font-weight: bold;
+                      font-size: 14px; margin-bottom: 18px;">
+                C O M I S S Ã O &nbsp; D E &nbsp; E X E R C Í C I O &nbsp; P R O F I S S I O N A L
+            </p>
+
+            <!-- Tabela RELATÓRIO -->
+            <table class="doc-table">
+                <tr>
+                    <td colspan="2" class="doc-cabecalho-titulo">RELATÓRIO</td>
+                </tr>
+                <tr>
+                    <td style="width: 36%;">Processo (Protocolo)</td>
+                    <td style="font-weight: bold;" id="prev_processo">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Autuado(a)</td>
+                    <td style="font-weight: bold;" id="prev_autuado">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Auto de infração</td>
+                    <td style="font-weight: bold;" id="prev_ai">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Conselheiro(a) Relator(a)</td>
+                    <td style="font-weight: bold;" id="prev_relator">&nbsp;</td>
+                </tr>
+            </table>
+
+            <!-- Tabela Localização / Natureza -->
+            <table class="doc-table">
+                <tr>
+                    <td style="width: 36%;">Localização</td>
+                    <td style="font-weight: bold;" id="prev_localizacao">&nbsp;</td>
+                </tr>
+            </table>
+
+            <!-- Tabela ORIGEM -->
+            <table class="doc-table" style="margin-bottom: 16px;">
+                <tr>
+                    <td rowspan="2" style="width: 16%; text-align: center;
+                                           vertical-align: middle; font-weight: bold;">ORIGEM</td>
+                    <td colspan="2" id="prev_rotina">&nbsp;&nbsp;( &nbsp;) Rotina de Fiscalização</td>
+                </tr>
+                <tr>
+                    <td style="width: 28%;" id="prev_denuncia_label">( &nbsp;) Denúncia</td>
+                    <td id="prev_denuncia_dados">
+                        Denunciante:<br>
+                        Denunciado(a):
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Resumo do processo -->
+            <p style="font-weight: bold; margin: 12px 0 4px;">Resumo do processo:</p>
+            <div id="texto_resumo" style="line-height: 1.6; min-height: 20px;"></div>
+
+            <!-- Conclusão / Fundamento -->
+            <div id="texto_conclusao" style="line-height: 1.6; margin-top: 12px; min-height: 0;"></div>
+
+            <!-- Tabela VOTO -->
+            <table class="doc-table" style="margin-top: 20px;">
+                <tr>
+                    <td class="doc-secao-titulo">VOTO</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 8px;">
+                        Pelo (a) &nbsp;
+                        <span id="prev_voto_man">☐</span> manutenção
+                        &nbsp;&nbsp;&nbsp;
+                        <span id="prev_voto_arq">☐</span> arquivamento
+                        &nbsp; do Auto de Infração em epígrafe.
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Tabela FATORES ATENUANTES -->
+            <table class="doc-table">
+                <tr>
+                    <td class="doc-secao-titulo">
+                        FATORES ATENUANTES<br>
+                        <span style="font-weight: normal; font-size: 12px; letter-spacing: 0;">
+                            (tabela IV – Res.198)
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 8px; line-height: 2.0;">
+                        <div id="prev_fat1">☐ Comprovar insuficiência econômica da pessoa física ou jurídica autuada;</div>
+                        <div id="prev_fat2">☐ Cometer infração sob coação, ou em cumprimento de ordem de autoridade superior, provocada por ato irregular de outrem;</div>
+                        <div id="prev_fat3">☐ Praticar o fato por relevante valor social;</div>
+                        <div id="prev_fat4">☐ Reparar eventuais danos antes do julgamento pela CEP-CAU/UF;</div>
+                        <div id="prev_fat5">☐ Eliminar o fato gerador do auto de infração.</div>
+                        <div id="prev_fat6">☐ Não se aplica.</div>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Data -->
+            <p style="text-align: center; margin: 28px 0 0;" id="prev_data">
+                Rio de Janeiro/RJ, ___ de ___________ de ______.
+            </p>
+
+            <!-- Assinatura -->
+            <div style="text-align: center; margin-top: 44px; margin-bottom: 16px;">
+                <p style="margin-bottom: 0;">__________________________________________</p>
+                <p style="margin-top: 6px; margin-bottom: 0;" id="prev_nome_assinatura"></p>
+                <p style="margin-top: 2px;">Conselheiro (a)</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ══ FOOTER ════════════════════════════════════════════════ -->
+    <footer class="d-flex align-items-center justify-content-center py-2 mt-auto bg-light">
+        <p class="m-1 small text-muted">Conselho de Arquitetura e Urbanismo do Rio de Janeiro — CAU/RJ</p>
+    </footer>
+
+    <!-- ══ SCRIPTS ═══════════════════════════════════════════════ -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jodit/build/jodit.min.js"></script>
+
+    <script>
+
+        var STORAGE_KEY = 'relatorio_ai_cep';
+
+        var CAMPOS_TEXTO = [
+            'inp_processo', 'inp_ai', 'inp_autuado', 'inp_relator',
+            'inp_localizacao', 'inp_denunciante', 'inp_denunciado',
+            'inp_dia', 'inp_ano'
+        ];
+
+        var CAMPOS_RICH = ['inp_resumo', 'inp_conclusao'];
+
+        var joditConfig = {
+            language: 'pt_br',
+            minHeight: 120,
+            buttons: 'bold,italic,underline,strikethrough,|,ul,ol,|,undo,redo,\n',
+            buttonsMD: 'bold,italic,underline,strikethrough,|,ul,ol,|,undo,redo,\n',
+            buttonsSM: 'bold,italic,underline,strikethrough,|,ul,ol,|,undo,redo,\n',
+            buttonsXS: 'bold,italic,underline,strikethrough,|,ul,ol,|,undo,redo,\n',
+        };
+
+        var joditResumo = Jodit.make('#inp_resumo', joditConfig);
+        var joditConclusao = Jodit.make('#inp_conclusao', joditConfig);
+
+        var editoresJodit = { inp_resumo: joditResumo, inp_conclusao: joditConclusao };
+
+        var CAMPOS_CHECK = [
+            'chk_manutencao', 'chk_arquivamento',
+            'chk_fat1', 'chk_fat2', 'chk_fat3', 'chk_fat4', 'chk_fat5', 'chk_fat6'
+        ];
+
+        var CAMPOS_CHECK_FATORES = [
+            'chk_fat1', 'chk_fat2', 'chk_fat3', 'chk_fat4', 'chk_fat5'
+        ];
+
+        var FATORES_TEXTOS = [
+            'Comprovar insuficiência econômica da pessoa física ou jurídica autuada;',
+            'Cometer infração sob coação, ou em cumprimento de ordem de autoridade superior, provocada por ato irregular de outrem;',
+            'Praticar o fato por relevante valor social;',
+            'Reparar eventuais danos antes do julgamento pela CEP-CAU/UF;',
+            'Eliminar o fato gerador do auto de infração.',
+            'Não se aplica.'
+        ];
+
+        // ── localStorage ──────────────────────────────────────────
+
+        function salvar() {
+            var dados = {};
+            CAMPOS_TEXTO.forEach(function (id) {
+                dados[id] = document.getElementById(id).value;
+            });
+            CAMPOS_RICH.forEach(function (id) {
+                dados[id] = editoresJodit[id].value;
+            });
+            CAMPOS_CHECK.forEach(function (id) {
+                dados[id] = document.getElementById(id).checked;
+            });
+            dados['origem'] = document.querySelector('input[name="origem"]:checked').value;
+            dados['inp_mes'] = document.getElementById('inp_mes').value;
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(dados));
+        }
+
+        function restaurar() {
+            var json = localStorage.getItem(STORAGE_KEY);
+            if (!json) return;
+            var dados = JSON.parse(json);
+            CAMPOS_TEXTO.forEach(function (id) {
+                if (dados[id] !== undefined) document.getElementById(id).value = dados[id];
+            });
+            CAMPOS_RICH.forEach(function (id) {
+                if (dados[id] !== undefined) editoresJodit[id].value = dados[id];
+            });
+            CAMPOS_CHECK.forEach(function (id) {
+                if (dados[id] !== undefined) document.getElementById(id).checked = dados[id];
+            });
+            if (dados['origem']) {
+                document.getElementById('radio_' + dados['origem']).checked = true;
+                document.getElementById('div_campos_denuncia').style.display =
+                    dados['origem'] === 'denuncia' ? 'block' : 'none';
+            }
+            if (dados['inp_mes']) document.getElementById('inp_mes').value = dados['inp_mes'];
+            atualizarFatores();
+        }
+
+        function novoProcesso() {
+            if (!confirm('Limpar todos os campos e começar um novo processo?')) return;
+            localStorage.removeItem(STORAGE_KEY);
+            CAMPOS_TEXTO.forEach(function (id) { document.getElementById(id).value = ''; });
+            CAMPOS_RICH.forEach(function (id) { editoresJodit[id].value = ''; });
+            CAMPOS_CHECK.forEach(function (id) {
+                var el = document.getElementById(id);
+                el.checked = false;
+                el.disabled = false;
+            });
+            document.getElementById('radio_rotina').checked = true;
+            document.getElementById('div_campos_denuncia').style.display = 'none';
+            document.getElementById('inp_mes').value = '';
+            document.getElementById('inp_ano').value = new Date().getFullYear();
+            atualizar();
+        }
+
+        // ── Listeners de salvamento automático ───────────────────
+
+        // Mostrar/ocultar campos de denúncia + salvar
+        document.querySelectorAll('input[name="origem"]').forEach(function (r) {
+            r.addEventListener('change', function () {
+                document.getElementById('div_campos_denuncia').style.display =
+                    this.value === 'denuncia' ? 'block' : 'none';
+                salvar();
+            });
+        });
+
+        // Voto: apenas um pode estar marcado
+        document.getElementById('chk_manutencao').addEventListener('change', function () {
+            if (this.checked) document.getElementById('chk_arquivamento').checked = false;
+            salvar();
+        });
+        document.getElementById('chk_arquivamento').addEventListener('change', function () {
+            if (this.checked) document.getElementById('chk_manutencao').checked = false;
+            salvar();
+        });
+
+        CAMPOS_TEXTO.forEach(function (id) {
+            document.getElementById(id).addEventListener('input', salvar);
+        });
+
+        CAMPOS_RICH.forEach(function (id) {
+            editoresJodit[id].events.on('change', salvar);
+        });
+
+        function atualizarFatores() {
+            var algumFatorMarcado = CAMPOS_CHECK_FATORES.some(function (id) {
+                return document.getElementById(id).checked;
+            });
+            var naoAplica = document.getElementById('chk_fat6');
+
+            if (algumFatorMarcado) {
+                naoAplica.checked = false;
+                naoAplica.disabled = true;
+            } else {
+                naoAplica.disabled = false;
+            }
+
+            if (naoAplica.checked) {
+                CAMPOS_CHECK_FATORES.forEach(function (id) {
+                    document.getElementById(id).checked = false;
+                    document.getElementById(id).disabled = true;
+                });
+            } else if (!algumFatorMarcado) {
+                CAMPOS_CHECK_FATORES.forEach(function (id) {
+                    document.getElementById(id).disabled = false;
+                });
+            }
+
+            salvar();
+        }
+
+        CAMPOS_CHECK_FATORES.forEach(function (id) {
+            document.getElementById(id).addEventListener('change', atualizarFatores);
+        });
+
+        document.getElementById('chk_fat6').addEventListener('change', atualizarFatores);
+
+        document.getElementById('inp_mes').addEventListener('change', salvar);
+
+        // ── Preview ───────────────────────────────────────────────
+
+        function chk(checked) {
+            return checked ? '☒' : '☐';
+        }
+
+        var QUADRADO_CHEIO = '<span style="display:inline-block;width:0.78em;height:0.78em;background:#000;vertical-align:-0.05em;"></span>';
+
+        function chkVoto(checked) {
+            return checked ? QUADRADO_CHEIO : '☐';
+        }
+
+        function setTexto(id, value) {
+            document.getElementById(id).textContent = value || '';
+        }
+
+        function nl2html(text) {
+            if (!text.trim()) return '';
+            return text.trim()
+                .split('\n')
+                .map(function (l) { return l ? '<p style="margin: 0 0 6px;">' + l + '</p>' : '<br>'; })
+                .join('');
+        }
+
+        function atualizar() {
+
+            // Campos de cabeçalho
+            setTexto('prev_processo', document.getElementById('inp_processo').value.trim());
+            setTexto('prev_autuado',  document.getElementById('inp_autuado').value.trim());
+            setTexto('prev_ai',       document.getElementById('inp_ai').value.trim());
+            var nomeRelator = document.getElementById('inp_relator').value.trim();
+            setTexto('prev_relator', nomeRelator);
+            setTexto('prev_nome_assinatura', nomeRelator);
+            setTexto('prev_localizacao', document.getElementById('inp_localizacao').value.trim());
+
+            // Texto do relatório
+            document.getElementById('texto_resumo').innerHTML = joditResumo.value;
+            document.getElementById('texto_conclusao').innerHTML = joditConclusao.value;
+
+            // Origem
+            var isRotina = document.getElementById('radio_rotina').checked;
+            var denunciante = document.getElementById('inp_denunciante').value.trim();
+            var denunciado  = document.getElementById('inp_denunciado').value.trim();
+
+            if (isRotina) {
+                document.getElementById('prev_rotina').innerHTML = '&nbsp;&nbsp;( x ) Rotina de Fiscalização';
+                document.getElementById('prev_denuncia_label').innerHTML = '( &nbsp;) Denúncia';
+                document.getElementById('prev_denuncia_dados').innerHTML = 'Denunciante:<br>Denunciado(a):';
+            } else {
+                document.getElementById('prev_rotina').innerHTML = '&nbsp;&nbsp;( &nbsp;) Rotina de Fiscalização';
+                document.getElementById('prev_denuncia_label').innerHTML = '( x ) Denúncia';
+                document.getElementById('prev_denuncia_dados').innerHTML =
+                    'Denunciante: ' + denunciante + '<br>Denunciado(a): ' + denunciado;
+            }
+
+            // Voto
+            document.getElementById('prev_voto_man').innerHTML =
+                chkVoto(document.getElementById('chk_manutencao').checked);
+            document.getElementById('prev_voto_arq').innerHTML =
+                chkVoto(document.getElementById('chk_arquivamento').checked);
+
+            // Fatores atenuantes
+            for (var i = 1; i <= 6; i++) {
+                var checked = document.getElementById('chk_fat' + i).checked;
+                document.getElementById('prev_fat' + i).textContent =
+                    chk(checked) + ' ' + FATORES_TEXTOS[i - 1];
+            }
+
+            // Data
+            var dia = document.getElementById('inp_dia').value  || '___';
+            var mes = document.getElementById('inp_mes').value  || '___________';
+            var ano = document.getElementById('inp_ano').value  || '______';
+            document.getElementById('prev_data').textContent =
+                'Rio de Janeiro/RJ, ' + dia + ' de ' + mes + ' de ' + ano + '.';
+        }
+
+        function printDiv(divId) {
+            if (!document.getElementById('chk_manutencao').checked &&
+                !document.getElementById('chk_arquivamento').checked) {
+                alert('O campo Voto é obrigatório.\nSelecione "manutenção" ou "arquivamento" antes de imprimir.');
+                return;
+            }
+            var conteudo = document.getElementById(divId).innerHTML;
+
+            var janela = window.open('', '', 'height=800,width=1000');
+
+            janela.document.write('<html><head>');
+            janela.document.write('<title>Relatório CEP</title>');
+            janela.document.write('<style>');
+            janela.document.write('* { box-sizing: border-box; }');
+            janela.document.write('body { font-family: Arial, sans-serif; font-size: 13px; line-height: 1.5; margin: 0; }');
+            janela.document.write('p { margin: 0 0 4px; }');
+            janela.document.write('table { width: 100%; border-collapse: collapse; margin-bottom: 12px; }');
+            janela.document.write('td { border: 1px solid #333; padding: 5px 8px; vertical-align: top; }');
+            janela.document.write('.doc-cabecalho-titulo { text-align: center; font-weight: bold; letter-spacing: 0.18em; background-color: #d9d9d9; -webkit-print-color-adjust: exact; print-color-adjust: exact; }');
+            janela.document.write('.doc-secao-titulo { text-align: center; font-weight: bold; letter-spacing: 0.12em; background-color: #d9d9d9; -webkit-print-color-adjust: exact; print-color-adjust: exact; }');
+            janela.document.write('header img, footer img { width: 100%; height: auto; display: block; }');
+            janela.document.write('.content { margin: 0 40px; padding: 10px 0; }');
+            janela.document.write('@page { margin: 30px 0; }');
+            janela.document.write('</style>');
+            janela.document.write('</head><body>');
+
+            janela.document.write('<header><img src="img/cabecalho.jpg" alt=""></header>');
+            janela.document.write('<div class="content">');
+            janela.document.write(conteudo);
+            janela.document.write('</div>');
+            janela.document.write('<footer><img src="img/rodape.jpg" alt=""></footer>');
+
+            janela.document.write('</body></html>');
+            janela.document.close();
+
+            janela.onload = function () { janela.print(); };
+        }
+
+        // ── Inicialização ─────────────────────────────────────────
+
+        if (!localStorage.getItem(STORAGE_KEY)) {
+            document.getElementById('inp_ano').value = new Date().getFullYear();
+        }
+        restaurar();
+        atualizar();
+
+    </script>
+
+</body>
+
+</html>

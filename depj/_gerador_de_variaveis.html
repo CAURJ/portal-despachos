@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerador de Scripts</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    textarea {
+      width: 100%;
+      height: 600px;
+      font-family: monospace;
+      white-space: pre;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Gerador de Scripts - Substituição de XXXX</h2>
+
+<textarea id="output" readonly></textarea>
+
+<script>
+  const ids = [
+    1000, 
+    2000,
+    3000,
+    4000,
+    5000,
+    6000, 
+    7000,
+    8000,
+    9000,
+    10000,
+    11000,
+    12000,
+    13000,
+    14000,
+
+
+  ];
+
+  const generateScripts = (ids) => {
+    return ids.map(id => `
+var texto_${id} = 
+\`<div>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div><div><br></div>\`;
+document.getElementById('despacho${id}').setAttribute('data-text', texto_${id});
+document.getElementById('editTextModal${id}').value = texto_${id};
+`).join('\n');
+  }
+
+  document.getElementById('output').value = generateScripts(ids);
+</script>
+
+</body>
+</html>

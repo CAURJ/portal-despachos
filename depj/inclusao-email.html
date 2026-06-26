@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WG7WBKELRJ"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-WG7WBKELRJ');
+        </script>
+
+
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="robots" content="noindex, nofollow">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+        <!-- Jodit CSS -->
+        <link rel="stylesheet" href="jodit.css">
+
+        <link rel="script" href="/textos.js">
+
+        <title>Despachos PJ</title>
+        
+        <style>
+            
+            .edit-icon {
+                cursor: pointer;
+                margin-left: 10px;
+                color: #005abb;
+                /* #14385d */
+            }
+            .info-icon {
+                cursor: pointer;
+                margin-left: 10px;
+                color: rgba(235, 153, 1, 0.884);
+                /* #fcdb04 */
+            }
+
+            .siccau-color{
+                background-color: #14385d;
+
+            }
+
+            .dropdown-item:hover {
+                background-color: #14395d28;
+
+            }
+
+        /* Estilos para o loader */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(255, 255, 255, 0.8); /* Fundo semitransparente */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        /* Criando um spinner com CSS */
+        .spinner {
+            border: 10px solid #f3f3f3; /* Cor de fundo do spinner */
+            border-top: 10px solid #3498db; /* Cor do spinner */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+        }
+
+        /* Definindo a animação */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Estilização do texto */
+        #loader div {
+            font-size: 18px;
+            color: #333;
+            margin-top: 20px; /* Espaço entre o spinner e o texto */
+        }
+
+        </style>
+
+    </head>
+
+    <body">
+
+        <!-- Div para o loader com o spinner CSS -->
+        <div id="loader">
+            <div class="spinner"></div>
+            <div>carregando...</div>
+        </div>
+            
+        <!--------------------------------------- nav superior ---------------------------------------->
+
+        <nav class="navbar navbar-expand-lg navbar-dark siccau-color">
+
+            <!-- brand -->
+            <a href="#"><img src="logo_novo.png" width="315" height="75" alt="Início" class="img-fluid"></a>
+            <!-- <a class="navbar-brand fa-lg pt-3 pb-3" href="">Despachos PJ</a> -->
+
+            <!-- collapse button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+                <ul class="navbar-nav ">
+
+                    <!-- Dropdown com atividades -->
+                    <li class="nav-item dropdown active ">
+                        
+                        <a class="nav-link dropdown-toggle d-flex align-items-center ml-3" style="width: 130px; height: 100%;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                            Despachos PJ
+                        </a>
+
+                        <div class="dropdown-menu">
+                                                       
+                            <a class="dropdown-item" href="despacho_solicitacao_novo.html">Solicitação de Registro <span class="badge badge-success">Despachos atualizados</span></a>
+                            <div class="dropdown-divider"></div>                          
+                            <a class="dropdown-item" href="alteracao-cadastral.html">Alteração Cadastral</a>
+                            <!-- <a class="dropdown-item" href="alteracao_cadastral.html">Alteração Cadastral <span class="badge badge-danger">Versão Antiga</span></a> -->
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="inclusao-email.html">Inclusão de email</a>
+                            <!-- <a class="dropdown-item" href="inclusao_email.html">Inclusão de email <span class="badge badge-danger">Versão Antiga</span></a> -->
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="baixa-registro-empresa.html">Baixa de Registro de Empresa</a>
+                            <!-- <a class="dropdown-item" href="baixa_registro_empresa.html">Baixa de Registro de Empresa <span class="badge badge-danger">Versão Antiga</span></a> -->
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="baixa-registro-empresa-oficio.html">Baixa de Registro de Empresa de Ofício</a>
+                            <!-- <a class="dropdown-item" href="baixa_registro_empresa_oficio.html">Baixa de Registro de Empresa de Ofício <span class="badge badge-danger">Versão Antiga</span></a> -->
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="interrupcao-registro-empresa.html">Interrupção de Registro de Empresa</a>
+                            <!-- <a class="dropdown-item" href="interrupcao_registro_empresa.html">Interrupção de Registro de Empresa <span class="badge badge-danger">Versão Antiga</span></a> -->
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="inclusao-responsavel-tecnico.html">Inclusão de Responsável Técnico</a>
+                            <!-- <a class="dropdown-item" href="inclusao_responsavel_tecnico.html">Inclusão de Responsável Técnico <span class="badge badge-danger">Versão Antiga</span></a> -->
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="baixa-responsavel-tecnico.html">Baixa de Responsável Técnico</a>
+                            <!-- <a class="dropdown-item" href="baixa_responsavel_tecnico.html">Baixa de Responsável Técnico <span class="badge badge-danger">Versão Antiga</span></a> -->
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="desconto-anuidade.html">Desconto de Anuidade</a>
+                            <!-- <a class="dropdown-item" href="desconto_anuidade.html">Desconto de Anuidade <span class="badge badge-danger">Versão Antiga</span></a> -->
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="crq-pj.html">CRQPJ</a>
+                            <!-- <a class="dropdown-item" href="crqpj.html">CRQPJ <span class="badge badge-danger">Versão Antiga</span></a> -->
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="visto-previo.html">Visto Prévio</a>
+                            <!-- <a class="dropdown-item" href="visto_previo.html">Visto Prévio <span class="badge badge-danger">Versão Antiga</span></a> -->
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="despachos-gerais.html">Despachos Gerais</a>
+                            <!-- <a class="dropdown-item" href="despachos_gerais.html">Despachos Gerais <span class="badge badge-danger">Versão Antiga</span></a> -->
+                            
+                        </div>
+                    </li>
+
+                    <!-- links demais páginas -->
+                    <ul class="navbar-nav flex-wrap">
+                        <li class="nav-item align-items-center justify-content-center">
+                            <a class="nav-link" href="https://acesso.caubr.gov.br/", target="_blank">SICCAU</a>
+                        </li>
+                        <li class="nav-item align-items-center justify-content-center">
+                            <a class="nav-link" href="https://conselhoarquitetura.sharepoint.com/:x:/r/sites/CAUSP-DRIVE/_layouts/15/Doc.aspx?sourcedoc=%7BA1016DBA-25B5-4B3F-8EC5-3C31AB948F7A%7D&file=DESPACHOS-PJ.xlsx&action=default&mobileredirect=true", target="_blank">Despachos</a>
+                        </li>
+                        <li class="nav-item align-items-center justify-content-center">
+                            <a class="nav-link" href="https://conselhoarquitetura.sharepoint.com/:x:/r/sites/CAUSP-DRIVE/_layouts/15/Doc.aspx?sourcedoc=%7BA315911C-C43C-49D4-9B2C-47E613E30E1F%7D&file=EVENTOS%20RELEVANTES%20PJ.xlsx&action=default&mobileredirect=true", target="_blank">Histórico de Eventos</a>
+                        </li>
+                        <li class="nav-item align-items-center justify-content-center">
+                            <a class="nav-link" href="https://n-tech4b.github.io/despachos-pj/relatorio_1_tri_2023", target="_blank">Relatório</a>
+                        </li>
+                        <li class="nav-item align-items-center justify-content-center">
+                            <!-- <a class="nav-link" href="https://conselhoarquitetura.sharepoint.com/:x:/r/sites/CAUSP-DRIVE/_layouts/15/Doc.aspx?sourcedoc=%7BB189AD91-4DE2-4EF5-B83F-47C519CC63B0%7D&file=CALCULO%20SALARIO%20MINIMO.xlsx&action=default&mobileredirect=true", target="_blank">Piso Salarial</a> -->
+                        </li>
+                        <li class="nav-item align-items-center justify-content-center">
+                            <a class="nav-link" href="https://n-tech4b.github.io/despachos-pj/piso-semanal", target="_blank">Calculadora Piso</a>
+                        </li>
+                        <li class="nav-item align-items-center justify-content-center">
+                            <a class="nav-link" href="https://caurj.github.io/despachos-depj-main/consulta_cnae.html", target="_blank"><span>CNAE</span></a>
+                        </li>
+                        <li class="nav-item align-items-center justify-content-center">
+                            <a class="nav-link" href="https://manualpj.netlify.app/", target="_blank"><span>Manuais</span></a>
+                        </li>         
+                        <li class="nav-item align-items-center justify-content-center">
+                            <a class="nav-link" href="https://conselhoarquitetura.sharepoint.com/:x:/r/sites/CAUSP-DRIVE/_layouts/15/Doc.aspx?sourcedoc=%7B8CF9D546-0417-4500-8A9D-D40BCA4024FB%7D&file=Planilha%20agendamento%20nova.xlsm&action=default&mobileredirect=true", target="_blank">Agendamento</a>
+                        </li>
+                        <li class="nav-item align-items-center justify-content-center">
+                            <a class="nav-link" href="https://transparencia.caubr.gov.br/resolucoes/", target="_blank">Resoluções</a>
+                        </li>
+                        <li class="nav-item align-items-center justify-content-center">
+                            <a class="nav-link" href="https://conselhoarquitetura.sharepoint.com/:f:/r/sites/CAUSP-DRIVE/Documentos%20Partilhados/General/TECNICA_PJ/PJ/ORIENTA%C3%87%C3%95ES%20PJ?csf=1&web=1&e=ykzLaM", target="_blank">Orientações PJ</a>
+                        </li>
+                    </ul>
+                </ul>
+            </div>
+        </nav>
+            
+        <!--------------------------------------- area elaboração do despacho ---------------------------------------->
+
+        <div class="container-fluid" >
+
+            <div class="row p-3" >
+                <div class="col-md-12">
+                    <h3 class="d-flex align-items-center mt-2">Inclusão de E-MAIL</h3>
+
+                    <!-- button reiniciar e desmarcar -->
+                    <div class="mb-3 mt-3">
+                        <button class="btn btn-sm btn-secondary mt-2" style="width: 90px" id="restartButton"><i class="fa fa-rotate-right pr-1"></i>Reiniciar</button>
+
+                        <button class="btn btn-sm btn-secondary mt-2" style="width: 105px" id="cleanButton"><i class="fa fa-eraser pr-1"></i>Desmarcar</button>
+                        
+                    </div>
+
+                    <!-- checkbox simples-->
+                    <div class="form-check mb-1 ml-2">
+                        <input type="checkbox" class="form-check-input" id="despacho1000" data-text="" checked>
+                        <label class="form-check-label" for="despacho1000">
+                            <span contenteditable="false">Destinatário.</span>
+                        </label>
+                        <i class="edit-icon fa fa-pencil" data-toggle="modal" data-target="#editModal1000"></i>
+                        <i class="info-icon fa fa-info" data-toggle="modal" data-target="#infoModal1000"></i>
+                    </div>
+
+                    <!-- checkbox simples-->
+                    <div class="form-check mb-1 ml-2">
+                        <input type="checkbox" class="form-check-input" id="despacho2000" data-text="" checked>
+                        <label class="form-check-label" for="despacho2000">
+                            <span contenteditable="false">Inclusão de e-mail.</span>
+                        </label>
+                        <i class="edit-icon fa fa-pencil" data-toggle="modal" data-target="#editModal2000"></i>
+                        <i class="info-icon fa fa-info" data-toggle="modal" data-target="#infoModal2000"></i>
+                    </div>
+
+                    <!-- checkbox simples-->
+                    <div class="form-check mb-1 ml-2">
+                        <input type="checkbox" class="form-check-input" id="despacho3000" data-text="">
+                        <label class="form-check-label" for="despacho3000">
+                            <span contenteditable="false">Alteração de e-mail.</span>
+                        </label>
+                        <i class="edit-icon fa fa-pencil" data-toggle="modal" data-target="#editModal3000"></i>
+                        <i class="info-icon fa fa-info" data-toggle="modal" data-target="#infoModal3000"></i>
+                    </div>
+
+                    <!-- checkbox simples-->
+                    <div class="form-check mb-1 ml-2">
+                        <input type="checkbox" class="form-check-input" id="despacho4000" data-text="" checked>
+                        <label class="form-check-label" for="despacho4000">
+                            <span contenteditable="false">Fechos e identificação do CAU/RJ.</span>
+                        </label>
+                        <i class="edit-icon fa fa-pencil" data-toggle="modal" data-target="#editModal4000"></i>
+                        <i class="info-icon fa fa-info" data-toggle="modal" data-target="#infoModal4000"></i>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!--------------------------------------- modais ---------------------------------------->
+
+        
+        <div class="modal" id="editModal1000">  
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Editar Despacho</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <textarea class="form-control editor" rows="12" id="editTextModal1000" style="line-height: 1;">
+                        </textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" onclick="saveEdit(1000)">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+
+        <div class="modal" id="editModal2000">  
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Editar Despacho</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <textarea class="form-control editor" rows="12" id="editTextModal2000" style="line-height: 1;">
+                        </textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" onclick="saveEdit(2000)">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+
+        <div class="modal" id="editModal3000">  
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Editar Despacho</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <textarea class="form-control editor" rows="12" id="editTextModal3000" style="line-height: 1;">
+                        </textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" onclick="saveEdit(3000)">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+
+        <div class="modal" id="editModal4000">  
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Editar Despacho</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <textarea class="form-control editor" rows="12" id="editTextModal4000" style="line-height: 1;">
+                        </textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" onclick="saveEdit(4000)">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        
+        
+        <!--------------------------------------- area do despacho  ---------------------------------------->
+
+        <div class="container-fluid" >
+            <div class="row" >
+                <div class="col-md-12">
+                    <div id="dataTextDisplay">
+                        <h4 class="ml-3">Despacho:</h4>
+                        <!-- readonly não permite edição na textarea -->
+                        <textarea id="selectedDataText" class="form-control border-dark editor" rows="10" style="line-height: 1;"></textarea>
+                        <div class="mt-3 text-center">
+                            <button class="btn btn-primary d-inline m-1" style="width: 110px" id="updateButton"><i class="fa fa-refresh pr-1"></i>Atualizar</button>
+                            <button class="btn btn-danger d-inline m-1" style="width: 110px" id="deleteButton"><i class="fa fa-trash pr-1"></i>Deletar</button>
+                            <button class="btn btn-success d-inline m-1" style="width: 110px" id="copyButton"><i class="fa fa-copy pr-1"></i>Copiar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--------------------------------------- footer  ---------------------------------------->
+
+        <footer class="siccau-color text-light d-flex align-items-center justify-content-center py-2 mt-3">
+            <p class="m-1">Conselho de Arquitetura e Urbanismo do Rio de Janeiro - CAU/RJ</p>
+        </footer>
+        
+    
+        <!-- JavaScript (Opcional) -->
+        <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script></div><br>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        
+        <!-- Inclua o script principal do Jodit -->
+        <script src="jodit.js"></script>
+
+        <script>
+
+            
+
+        // Sua variável
+   
+
+var texto_1000 = 
+`<div>Prezados responsáveis pela empresa XXXXXXXXXXXXXXXXXXXXX,</div><div><br></div>`;
+document.getElementById('despacho1000').setAttribute('data-text', texto_1000);
+document.getElementById('editTextModal1000').value = texto_1000;
+
+
+var texto_2000 = 
+`<div>O e-mail XXXXXXXXXXXXXX foi inserido no SICCAU (Sistema de Informação e Comunicação do CAU) da empresa.</div><div><br></div><div>Por favor, acesse o link abaixo e insira o CNPJ para receber a senha do SICCAU no e-mail:</div><div><a href="https://acesso.caubr.gov.br/usuario/senha/email" target="blank">https://acesso.caubr.gov.br/usuario/senha/email</a></div><div><br></div><div>No SICCAU é possível realizar a emissão do boleto da anuidade, bem como a emissão da Certidão de Registro e Quitação de Pessoa Jurídica (CRQPJ), entre outras funcionalidades.</div><div><br></div><div>As condições de pagamento e desconto de anuidade estão descritas nos links abaixo:</div><div><a href="https://servicos.caubr.gov.br/helpdesk/lib/exe/fetch.php/tut_pagamento_da_anuidade_2023_r00.pdf" target="blank">https://servicos.caubr.gov.br/helpdesk/lib/exe/fetch.php/tut_pagamento_da_anuidade_2023_r00.pdf</a></div><div><a href="https://causp.gov.br/anuidade-2023-confira-os-novos-descontos-e-prazos/" target="blank">https://causp.gov.br/anuidade-2023-confira-os-novos-descontos-e-prazos/</a></div><div><br></div>`;
+document.getElementById('despacho2000').setAttribute('data-text', texto_2000);
+document.getElementById('editTextModal2000').value = texto_2000;
+
+
+var texto_3000 = 
+`<div>Para acesso ao SICCAU, por gentileza acessar: <a href="https://www.causp.gov.br" target="blank">https://www.causp.gov.br</a> - clicar em "SICCAU" - no campo "Fazer Login" digitar o CNPJ e a senha da empresa.</div><div><br></div><div>Caso não tenha mais acesso a senha clicar em "Esqueci minha Senha" , uma nova senha irá para o e-mail xxxxxx Caso deseje mudar o e-mail para receber a senha, por gentileza preencher solicitação (anexo) de inclusão de e-mail no SICCAU(Sistema de Informação e Comunicação do CAU) e retornar a solicitação preenchida, por e-mail.</div><div><br></div>`;
+document.getElementById('despacho3000').setAttribute('data-text', texto_3000);
+document.getElementById('editTextModal3000').value = texto_3000;
+
+
+var texto_4000 = 
+`<div><br></div><div>Atenciosamente,</div><div>Equipe CAU/RJ.</div><div><br></div>`;
+document.getElementById('despacho4000').setAttribute('data-text', texto_4000);
+document.getElementById('editTextModal4000').value = texto_4000;
+
+
+
+          
+            function saveEdit(despachoNumber) {
+                const editTextModal = $('#editTextModal' + despachoNumber).val();
+                const checkbox = $('#despacho' + despachoNumber);
+                checkbox.find('span').text(editTextModal);
+                checkbox.data('text', editTextModal);
+
+                
+                $('#dataTextDisplay' + despachoNumber).text(editTextModal);
+
+                $('#editModal' + despachoNumber).modal('hide');
+            }
+
+            // botão copiar para solicitação de registro (elimina todos os br)
+
+            // $('#copyButton').click(function() {
+            //     let selectedDataText = $('#selectedDataText').val(); // Obtém o texto do textarea
+
+            //     if (selectedDataText !== 'Nenhum selecionado') {
+            //         // Remove todas as tags <br> ou <br />
+            //         selectedDataText = selectedDataText.replace(/<br\s*\/?>/gi, '');
+
+            //         // Copiar o texto para a área de transferência (clipboard)
+            //         const el = document.createElement('textarea');
+            //         el.value = selectedDataText;
+
+            //         console.log(el.value);
+
+            //         document.body.appendChild(el);
+            //         el.select();
+            //         document.execCommand('copy');
+            //         document.body.removeChild(el);
+
+            //     }
+            // });
+
+            // botão copiar para protocolo (elimina todos os br e adiciona a tag pre (confirmar qual a melhor opção))
+
+            $('#copyButton').click(function() {
+
+                let selectedDataText = $('#selectedDataText').val(); // Obtém o texto do textarea
+
+                if (selectedDataText !== 'Nenhum selecionado') {
+                    // Remove todas as tags <br> ou <br />
+                    // selectedDataText = selectedDataText.replace(/<br\s*\/?>/gi, '');
+
+                    // Adiciona a tag <div><pre> no início e fecha no final
+                    //selectedDataText = `<div><pre style="font-family: Verdana;" wrap="hard">${selectedDataText}</pre></div>`;
+
+                    // Adiciona a tag <div><pre> no início e fecha no final
+                    selectedDataText = `<div style="font-weight: normal;">${selectedDataText}</div>`;
+
+                    // Copiar o texto para a área de transferência (clipboard)
+                    const el = document.createElement('textarea');
+                    el.value = selectedDataText;
+
+                    console.log(el.value);
+
+                    document.body.appendChild(el);
+                    el.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(el);
+
+                }   
+
+
+            });
+
+            $('#updateButton').click(function() {
+                // Obter os valores dos checkboxes selecionados
+                const selectedCheckboxes = $('input[type="checkbox"]:checked');
+                // const selectedDataText = Array.from(selectedCheckboxes).map(checkbox => $(checkbox).data('text')).join('\n');
+                // console.log(selectedDataText);
+
+                const selectedDataText = Array.from(selectedCheckboxes)
+                .map(checkbox => $(checkbox).data('text'))
+                .join('');
+                console.log(selectedDataText);
+
+                // Localizar o editor Jodit
+                const editorInstance = Jodit.instances.selectedDataText;
+
+                if (editorInstance) {
+                    // Atualizar o conteúdo do editor Jodit
+                    editorInstance.value = selectedDataText || 'Nenhum selecionado';
+                } else {
+                    console.error('Jodit instance not found for #selectedDataText');
+                }
+            });
+
+            $(document).ready(function() {
+                $('#deleteButton').click(function() {
+                    let editorInstance = Jodit.instances.selectedDataText;
+                    if (editorInstance) {
+                        editorInstance.value = ''; // Limpa o conteúdo do editor
+                    } else {
+                        $('#selectedDataText').text('Nenhum selecionado'); // Alternativa para textarea normal
+                    }
+                });
+            });
+
+            $(document).ready(function() {
+                $('#restartButton').click(function() {
+                    location.reload(true);
+                });
+            });
+
+            $(document).ready(function () {
+                // Desmarcar todas as checkboxes
+                function desmarcarTodasCheckboxes() {
+                    $('input[type="checkbox"]').prop('checked', false);
+                }
+
+                // Recolher o collapse e desmarcar as checkboxes ao recolher
+                $('.collapse').on('hidden.bs.collapse', function () {
+                    $(this).find('input[type="checkbox"]').prop('checked', false);
+                });
+
+                // Ação do botão "Desmarcar"
+                $('#cleanButton').click(function () {
+                    desmarcarTodasCheckboxes();
+                    // Recolher todos os collapses se necessário
+                    $('.collapse.show').collapse('hide');
+                });
+            });
+
+
+            // jodit inicialização
+
+            document.querySelectorAll('.editor').forEach((textarea) => {
+            const editor = new Jodit(textarea, {
+                "uploader": {
+                "insertImageAsBase64URI": true
+                },
+                // Configurações do editor
+                language: 'pt_br', // Define o idioma como português
+                // maxHeight: 1600,
+                enter: "div",
+                spellcheck: true,
+                showXPathInStatusbar: false,
+                askBeforePasteHTML: true,
+                askBeforePasteFromWord: false,
+                buttons: [
+                    'undo', 'redo', '|',
+                    'font','fontsize', 'eraser', '|',
+                    'bold', 'italic', 'underline', 'strikethrough', 
+                    'superscript', 'subscript', 'brush', '|',
+                    'ul', 'ol', 
+                    //'indent', 'outdent', 'align', 'lineHeight', 
+                    'paragraph', '|',
+                    'table', 'hr', 'symbols', '|',
+                    // 'classSpan', '|',
+                    // 'file', 
+                    'link', 'image', 'video', '|',
+                    // 'cut', 'copy', 'paste', 
+                    // 'copyformat', '|',
+                    // 'ai-commands', 'ai-assistant', '|',
+                    'find', 'spellcheck', 
+                    //'selectall', 'copy', 
+                    'preview', 'print', 'fullsize', 
+                    // 'about'
+                ]
+                ,
+                style: {
+                fontSize: '14px'
+                },
+            });
+        });
+
+
+        // remover o o spinner após o carregamento da página (jodit etc)
+        window.onload = function() {
+
+            document.getElementById('loader').style.display = 'none';
+
+            // simular atraso para teste
+            // setTimeout(function() {
+            //     Remove o loader após o atraso
+            //     document.getElementById('loader').style.display = 'none';
+            // }, 600); 
+        };
+
+
+
+            
+        $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+        })
+            
+        </script>
+
+    </body>
+</html>
